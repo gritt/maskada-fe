@@ -1,26 +1,72 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Header} from "./Components/Header";
+import {Transaction} from "./Components/Transaction";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    let testTransactions = [
+        {
+            "id": 1,
+            "amount": 4050,
+            "type": 3,
+            "category": "Income",
+            "date": "2019-11-02T03:26:26Z",
+            "name": ""
+        },
+        {
+            "id": 2,
+            "amount": 37,
+            "type": 2,
+            "category": "Entertainment",
+            "date": "2019-11-02T03:26:56Z",
+            "name": ""
+        },
+        {
+            "id": 3,
+            "amount": 110,
+            "type": 2,
+            "category": "Entertainment",
+            "date": "2019-11-02T03:27:30Z",
+            "name": "Weiss Pub"
+        },
+        {
+            "id": 4,
+            "amount": 80,
+            "type": 2,
+            "category": "Food",
+            "date": "2019-11-02T03:27:57Z",
+            "name": ""
+        },
+        {
+            "id": 5,
+            "amount": 32,
+            "type": 2,
+            "category": "Food",
+            "date": "2019-11-02T03:28:05Z",
+            "name": ""
+        },
+        {
+            "id": 6,
+            "amount": 68,
+            "type": 1,
+            "category": "Health",
+            "date": "2019-11-02T03:28:41Z",
+            "name": ""
+        }
+    ];
+
+    return (
+        <div className="app">
+            <Header/>
+            <section className={"content"}>
+                <ul>
+                    {testTransactions.map(function (props) {
+                        return (<Transaction {...props}/>);
+                    })}
+                </ul>
+            </section>
+        </div>
+    );
 }
 
 export default App;
