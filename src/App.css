@@ -1,22 +1,165 @@
-.App {
-  text-align: center;
+body {
+    --highlight-background-color: #f9f9f9;
+    --highlight-background-color-active: #ffffff;
+    --highlight-border-color: #d9d9d9;
+
+    --income-text-color: forestgreen;
+    --income-highlight-color: rgba(34, 139, 34, 0.015);
+
+    --debit-text-color: orangered;
+    --debit-hightlight-color: rgba(255, 69, 0, 0.015);
+
+    --credit-card-text-color: purple;
+    --credit-card-highlight-color: rgba(128, 0, 128, 0.015);
+
+    --text-color: #999;
+    --text-color-active: #555;
+
+    --text-color-positive: var(--income-text-color);
+    --text-color-negative: var(--debit-text-color);
+
+    --text-xsm: 0.70rem;
+    --text-sm: 0.90rem;
+    --text-m: 1.10rem;
+    --text-l: 1.50rem;
+    --text-xl: 1.90rem;
+
+    --width-full: 100%;
+
+    --margin-xsm: 0.5rem;
+    --margin-sm: 1rem;
+    --margin-m: 1.25rem;
+
+    --pading-xsm: 0.5rem;
+    --pading-sm: 1rem;
+    --pading-m: 1.25rem;
 }
 
-.App-logo {
-  height: 40vmin;
+.app {
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: auto;
 }
 
-.App-link {
-  color: #09d3ac;
+header {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--highlight-background-color);
+    border-bottom: solid 1px var(--highlight-border-color);
+    margin-bottom: var(--margin-sm);
+}
+
+.months-nav {
+    padding: var(--pading-xsm);
+    overflow: hidden;
+}
+
+.months-nav__list {
+    width: var(--width-full);
+    display: inline-flex;
+    list-style: none;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    font-weight: 300;
+
+    font-size: var(--text-xsm);
+    color: var(--text-color);
+}
+
+.months-nav__list li {
+    display: flex;
+    height: auto;
+    border-radius: 50px;
+    border: solid 1px transparent;
+    user-select: none;
+    padding: var(--pading-xsm);
+    margin: 0 var(--margin-xsm);
+}
+
+.months-nav__list li:hover {
+    border: solid 1px var(--highlight-border-color);
+}
+
+.months-nav__list .months-nav__list--active {
+    background-color: var(--highlight-background-color-active);
+    border: solid 1px var(--highlight-border-color);
+    color: var(--text-color-active)
+}
+
+.account {
+    display: flex;
+    padding-top: var(--pading-m);
+    padding-bottom: var(--pading-m);
+
+    font-weight: 300;
+    font-size: var(--text-l);
+    justify-content: center;
+    color: var(--text-color-positive)
+}
+
+.content {
+    padding-top: 15rem;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.transaction {
+    display: flex;
+}
+
+.transaction__description {
+    height: 80px;
+    width: 100%;
+    min-width: 200px;
+    display: inline-grid;
+    align-content: center;
+}
+
+.transaction__name {
+    font-size: var(--text-sm);
+    color: var(--text-color-active);
+}
+
+.transaction__date {
+    color: var(--text-color);
+    font-size: var(--text-xsm);
+}
+
+.transaction__amount {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    display: inline-grid;
+    align-content: center;
+    text-align: center;
+    font-size: var(--text-sm);
+}
+
+.transaction__connection {
+    display: flex;
+    width: 40px;
+    height: 30px;
+    border-right: solid 1px var(--highlight-border-color);
+}
+
+.transaction__type-income {
+    border: solid 1px var(--income-text-color);
+    color: var(--income-text-color);
+    background-color: var(--income-highlight-color);
+}
+
+.transaction__type-credit {
+    border: solid 1px var(--credit-card-text-color);
+    color: var(--credit-card-text-color);
+    background-color: var(--credit-card-highlight-color);
+}
+
+.transaction__type-debit {
+    border: solid 1px var(--debit-text-color);
+    color: var(--debit-text-color);
+    background-color: var(--debit-hightlight-color);
 }
