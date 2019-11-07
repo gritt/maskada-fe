@@ -1,29 +1,59 @@
 import React from "react";
 
-function Header() {
+function Header(props) {
+    let currentMonth = getMonthName(Date.now());
+
+    function selectedIfCurrent(month) {
+        return currentMonth === month ? 'months-nav__list--active' : undefined
+    }
+
+    let timeline = getTimeline(props.transactions);
+
+    if (!timeline.includes(currentMonth)) {
+        timeline.push(currentMonth)
+    }
+
     return (
         <div className="sticky">
             <header>
                 <nav className="months-nav">
                     <ul className="months-nav__list">
-                        <li>January</li>
-                        <li>February</li>
-                        <li>March</li>
-                        <li>April</li>
-                        <li>May</li>
-                        <li>June</li>
-                        <li>July</li>
-                        <li className="months-nav__list--active">August</li>
-                        <li>September</li>
-                        <li>October</li>
-                        <li>November</li>
-                        <li>December</li>
+                        {timeline.map(function (month) {
+                            return (
+                                <li className={selectedIfCurrent(month)} key={month}>
+                                    {month}
+                                </li>
+                            );
+                        })}
                     </ul>
                 </nav>
                 <h1 className="account">$ 5.764</h1>
             </header>
         </div>
     );
+}
+
+function getTimeline(transactions) {
+    let timeline = [];
+
+    function toMonthsTimeline(transaction) {
+        let month = getMonthName(transaction.date);
+        if (!timeline.includes(month)) {
+            timeline.push(month)
+        }
+    }
+
+    transactions.filter(toMonthsTimeline);
+
+    return timeline
+}
+
+function getMonthName(datetime) {
+    let date = new Date(datetime);
+
+    let longMonth = date.toLocaleString('default', {month: 'long'});
+    let shortenYear = date.getFullYear().toString().substr(-2);
+    return longMonth + " " + shortenYear
 }
 
 export {Header}

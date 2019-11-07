@@ -71,8 +71,9 @@ header {
 }
 
 .months-nav__list li {
-    display: flex;
     height: auto;
+    min-width: 95px;
+    text-align: center;
     border-radius: 50px;
     border: solid 1px transparent;
     user-select: none;
