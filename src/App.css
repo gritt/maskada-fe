@@ -99,7 +99,14 @@ header {
     font-weight: 300;
     font-size: var(--text-l);
     justify-content: center;
+}
+
+.account--positive {
     color: var(--text-color-positive)
+}
+
+.account--negative {
+    color: var(--text-color-negative)
 }
 
 .content {
