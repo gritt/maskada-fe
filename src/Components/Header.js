@@ -1,59 +1,64 @@
 import React from "react";
 
 function Header(props) {
-    let currentMonth = getMonthName(Date.now());
-
-    function selectedIfCurrent(month) {
-        return currentMonth === month ? 'months-nav__list--active' : undefined
-    }
-
-    let timeline = getTimeline(props.transactions);
-
-    if (!timeline.includes(currentMonth)) {
-        timeline.push(currentMonth)
-    }
+    const timeline = getTimeline(props.transactions);
+    const wallet = getSummary(props.transactions);
 
     return (
-        <div className="sticky">
-            <header>
-                <nav className="months-nav">
-                    <ul className="months-nav__list">
-                        {timeline.map(function (month) {
-                            return (
-                                <li className={selectedIfCurrent(month)} key={month}>
-                                    {month}
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </nav>
-                <h1 className="account">$ 5.764</h1>
-            </header>
-        </div>
+        <header className="sticky">
+            <nav className="months-nav">
+                <ul className="months-nav__list">
+                    {timeline.map(function (month) {
+                        return (
+                            <li className={isCurrent(month) ? 'months-nav__list--active' : undefined} key={month}>
+                                {month}
+                            </li>
+                        );
+                    })}
+                </ul>
+            </nav>
+            <h1 className="account">$ {wallet}</h1>
+        </header>
     );
 }
 
 function getTimeline(transactions) {
-    let timeline = [];
+    let timeline = Object.keys(transactions);
 
-    function toMonthsTimeline(transaction) {
-        let month = getMonthName(transaction.date);
-        if (!timeline.includes(month)) {
-            timeline.push(month)
-        }
+    let month = getMonth(Date.now());
+    if (!timeline.includes(month)) {
+        timeline.push(month);
     }
-
-    transactions.filter(toMonthsTimeline);
 
     return timeline
 }
 
-function getMonthName(datetime) {
+function isCurrent(month) {
+    let current = getMonth(Date.now());
+
+    return current === month
+}
+
+function getMonth(datetime) {
     let date = new Date(datetime);
 
     let longMonth = date.toLocaleString('default', {month: 'long'});
     let shortenYear = date.getFullYear().toString().substr(-2);
+
     return longMonth + " " + shortenYear
+}
+
+function getSummary(transactions) {
+    let month = getMonth(Date.now());
+
+    const monthlyTransactions = transactions[month];
+
+    let balance = 0;
+    monthlyTransactions.forEach(transaction => {
+        balance += transaction.amount
+    });
+
+    return balance
 }
 
 export {Header}

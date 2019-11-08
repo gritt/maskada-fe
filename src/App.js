@@ -55,10 +55,36 @@ const transactions = [
 ];
 
 class App extends React.Component {
+    byMonthName = function (transaction) {
+        let date = new Date(transaction.date);
+
+        let longMonth = date.toLocaleString('default', {month: 'long'});
+        let shortenYear = date.getFullYear().toString().substr(-2);
+
+        return longMonth + " " + shortenYear
+    };
+
+    groupBy = function (collatorFn, transactions) {
+        return transactions.reduce(function (accumulator, transaction) {
+            const key = collatorFn(transaction);
+
+            if (!accumulator[key]) {
+                accumulator[key] = [transaction]
+            } else {
+                accumulator[key].push(transaction)
+            }
+
+            return accumulator
+        }, {})
+    };
+
     constructor(props) {
         super(props);
         this.state = {
-            transactions: transactions,
+            transactions: this.groupBy(
+                this.byMonthName,
+                transactions,
+            )
         };
     }
 
@@ -66,7 +92,7 @@ class App extends React.Component {
         return (
             <div className="app">
                 <Header transactions={this.state.transactions}/>
-                <Transactions transactions={this.state.transactions}/>
+                {/*<Transactions transactions={this.state.transactions}/>*/}
             </div>
         );
     }
