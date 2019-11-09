@@ -1,16 +1,9 @@
 import React from "react";
 
 function Transaction(props) {
-    let name = props.name === "" ?
-        props.category :
-        props.name;
-
     return (
         <li className={"transaction"}>
-            <span className="transaction__description">
-                <span className="transaction__name">{name}</span>
-                <span className="transaction__date">{props.date}</span>
-            </span>
+            <Info date={props.date} name={props.name} category={props.category}/>
             <Amount amount={props.amount} type={props.type}/>
         </li>
     );
@@ -22,6 +15,17 @@ function Amount(props) {
         <span>
             <span className={style}>$ {props.amount}</span>
             <span className="transaction__connection"/>
+        </span>
+    );
+}
+
+function Info(props) {
+    let name = props.name === "" ? props.category : props.name;
+
+    return (
+        <span className="transaction__description">
+            <span className="transaction__name">{name}</span>
+            <span className="transaction__date">{props.date}</span>
         </span>
     );
 }

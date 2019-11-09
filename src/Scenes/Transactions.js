@@ -1,11 +1,15 @@
 import React from 'react'
 import {Transaction} from "../Components/Transaction";
+import {GetMonthName} from "../Services/Datetime";
 
 function Transactions(props) {
+    const month = GetMonthName(Date.now());
+    const monthlyTransactions = props.transactions[month];
+
     return (
         <section className="content">
             <ul>
-                {props.transactions.map(function (transaction) {
+                {monthlyTransactions.map(function (transaction) {
                     return (<Transaction {...transaction} key={transaction.id}/>);
                 })}
             </ul>

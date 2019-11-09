@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {Header} from "./Components/Header";
+import {Wallet} from "./Components/Wallet";
 import {Transactions} from "./Scenes/Transactions";
 
 const transactions = [
@@ -91,8 +91,8 @@ class App extends React.Component {
     render() {
         return (
             <div className="app">
-                <Header transactions={this.state.transactions}/>
-                {/*<Transactions transactions={this.state.transactions}/>*/}
+                <Wallet transactions={this.state.transactions}/>
+                <Transactions transactions={this.state.transactions}/>
             </div>
         );
     }
