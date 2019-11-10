@@ -29,6 +29,14 @@ const transactions = [
         "name": "Weiss Pub"
     },
     {
+        "id": 3,
+        "amount": -320,
+        "type": 1,
+        "category": "Health",
+        "date": "2019-10-03T03:27:30Z",
+        "name": "Panvel"
+    },
+    {
         "id": 4,
         "amount": 80,
         "type": 2,
