@@ -1,24 +1,31 @@
-import React from "react";
-import {GetMonthName, IsCurrent} from "../Services/Datetime";
+import React, {useState} from "react";
+import {GetMonthName} from "../Services/Datetime";
 
 function Wallet(props) {
+    const [activeMonth, setMonth] = useState(
+        GetMonthName(Date.now())
+    );
+
     return (
         <header className="sticky">
-            <Timeline transactions={props.transactions}/>
-            <Balance transactions={props.transactions}/>
+            <Timeline transactions={props.transactions} activeMonth={activeMonth} setMonth={setMonth}/>
+            <Balance transactions={props.transactions} activeMonth={activeMonth}/>
         </header>
     );
 }
 
-function Timeline(props) {
-    const timeline = buildTimeline(props.transactions);
+function Timeline({transactions, activeMonth, setMonth}) {
+    const timeline = getTimeline(transactions);
 
     return (
         <nav className="months-nav">
             <ul className="months-nav__list">
                 {timeline.map((month) => {
+                    let style = month === activeMonth ? 'months-nav__list--active' : undefined;
                     return (
-                        <Month month={month} key={month}/>
+                        <li className={style} key={month} onClick={() => {setMonth(month)}}>
+                            {month}
+                        </li>
                     );
                 })}
             </ul>
@@ -26,29 +33,10 @@ function Timeline(props) {
     );
 }
 
-function Month(props) {
-    let isActive = IsCurrent(props.month) ? 'months-nav__list--active' : undefined;
-
-    return (
-        <li className={isActive} key={props.month}>
-            {props.month}
-        </li>
-    );
-}
-
-function Balance(props) {
-    const balance = calculateBalance(props.transactions);
-    const status = balance >= 0 ? "account account--positive" : "account account--negative";
-
-    return (
-        <h1 className={status}>$ {balance}</h1>
-    );
-}
-
-function buildTimeline(transactions) {
+function getTimeline(transactions) {
     const timeline = Object.keys(transactions);
-
     const month = GetMonthName(Date.now());
+
     if (!timeline.includes(month)) {
         timeline.push(month);
     }
@@ -56,9 +44,17 @@ function buildTimeline(transactions) {
     return timeline
 }
 
-function calculateBalance(transactions) {
-    const month = GetMonthName(Date.now());
-    const monthlyTransactions = transactions[month];
+function Balance({activeMonth, transactions}) {
+    const balance = getBalance(transactions, activeMonth);
+    const status = balance >= 0 ? "account account--positive" : "account account--negative";
+
+    return (
+        <h1 className={status}>$ {balance}</h1>
+    );
+}
+
+function getBalance(transactions, activeMonth) {
+    const monthlyTransactions = transactions[activeMonth];
 
     let balance = 0;
     monthlyTransactions.forEach(transaction => {

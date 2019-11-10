@@ -9,11 +9,4 @@ function GetMonthName(datetime) {
     return longMonth + " " + shortenYear
 }
 
-/**
- * @return {boolean}
- */
-function IsCurrent(month) {
-    return month === GetMonthName(Date.now());
-}
-
-export {GetMonthName, IsCurrent}
+export {GetMonthName}
