@@ -55,7 +55,7 @@ const transactions = [
 ];
 
 class App extends React.Component {
-    byMonthName = function (transaction) {
+    byMonthName = (transaction) => {
         let date = new Date(transaction.date);
 
         let longMonth = date.toLocaleString('default', {month: 'long'});
@@ -64,8 +64,8 @@ class App extends React.Component {
         return longMonth + " " + shortenYear
     };
 
-    groupBy = function (collatorFn, transactions) {
-        return transactions.reduce(function (accumulator, transaction) {
+    groupBy = (collatorFn, transactions) => {
+        return transactions.reduce((accumulator, transaction) => {
             const key = collatorFn(transaction);
 
             if (!accumulator[key]) {

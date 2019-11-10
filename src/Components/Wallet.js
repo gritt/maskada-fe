@@ -16,7 +16,7 @@ function Timeline(props) {
     return (
         <nav className="months-nav">
             <ul className="months-nav__list">
-                {timeline.map(function (month) {
+                {timeline.map((month) => {
                     return (
                         <Month month={month} key={month}/>
                     );

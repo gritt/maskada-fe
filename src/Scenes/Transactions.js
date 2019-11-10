@@ -9,7 +9,7 @@ function Transactions(props) {
     return (
         <section className="content">
             <ul>
-                {monthlyTransactions.map(function (transaction) {
+                {monthlyTransactions.map((transaction) => {
                     return (<Transaction {...transaction} key={transaction.id}/>);
                 })}
             </ul>
