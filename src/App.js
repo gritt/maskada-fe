@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from "react";
 import './App.css';
 import {Wallet} from "./Components/Wallet";
 import {Transactions} from "./Scenes/Transactions";
+import {GetMonthName} from "./Services/Datetime";
 
-const transactions = [
+const testTransactions = [
     {
         "id": 1,
         "amount": 4050,
@@ -22,6 +23,46 @@ const transactions = [
     },
     {
         "id": 3,
+        "amount": 65,
+        "type": 2,
+        "category": "Entertainment",
+        "date": "2019-09-02T03:26:56Z",
+        "name": ""
+    },
+    {
+        "id": 4,
+        "amount": 32,
+        "type": 1,
+        "category": "Food",
+        "date": "2019-09-02T03:26:56Z",
+        "name": ""
+    },
+    {
+        "id": 5,
+        "amount": 21,
+        "type": 2,
+        "category": "Health",
+        "date": "2019-09-02T03:26:56Z",
+        "name": ""
+    },
+    {
+        "id": 6,
+        "amount": 13,
+        "type": 2,
+        "category": "Transport",
+        "date": "2019-09-02T03:26:56Z",
+        "name": ""
+    },
+    {
+        "id": 7,
+        "amount": 14,
+        "type": 2,
+        "category": "Transport",
+        "date": "2019-09-02T03:26:56Z",
+        "name": ""
+    },
+    {
+        "id": 8,
         "amount": 110,
         "type": 2,
         "category": "Entertainment",
@@ -29,7 +70,7 @@ const transactions = [
         "name": "Weiss Pub"
     },
     {
-        "id": 3,
+        "id": 9,
         "amount": -320,
         "type": 1,
         "category": "Health",
@@ -37,7 +78,7 @@ const transactions = [
         "name": "Panvel"
     },
     {
-        "id": 4,
+        "id": 10,
         "amount": 80,
         "type": 2,
         "category": "Food",
@@ -45,15 +86,15 @@ const transactions = [
         "name": ""
     },
     {
-        "id": 5,
+        "id": 11,
         "amount": 32,
         "type": 2,
         "category": "Food",
-        "date": "2019-11-02T03:28:05Z",
+        "date": "2019-12-02T03:28:05Z",
         "name": ""
     },
     {
-        "id": 6,
+        "id": 12,
         "amount": 68,
         "type": 1,
         "category": "Health",
@@ -62,17 +103,13 @@ const transactions = [
     }
 ];
 
-class App extends React.Component {
-    byMonthName = (transaction) => {
+function App() {
+    const byMonthName = (transaction) => {
         let date = new Date(transaction.date);
-
-        let longMonth = date.toLocaleString('default', {month: 'long'});
-        let shortenYear = date.getFullYear().toString().substr(-2);
-
-        return longMonth + " " + shortenYear
+        return GetMonthName(date)
     };
 
-    groupBy = (collatorFn, transactions) => {
+    const groupBy = (collatorFn, transactions) => {
         return transactions.reduce((accumulator, transaction) => {
             const key = collatorFn(transaction);
 
@@ -86,30 +123,21 @@ class App extends React.Component {
         }, {})
     };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            transactions: this.groupBy(
-                this.byMonthName,
-                transactions,
-            )
-        };
-    }
+    const [activeMonth, setMonth] = useState(
+        GetMonthName(Date.now())
+    );
 
-    render() {
-        return (
-            <div className="app">
-                <Wallet transactions={this.state.transactions}/>
-                <Transactions transactions={this.state.transactions}/>
-            </div>
-        );
-    }
+    const [transactions] = useState(
+        groupBy(byMonthName, testTransactions)
+    );
 
-    componentDidMount() {
-    }
+    return (
+        <div className="app">
+            <Wallet transactions={transactions} activeMonth={activeMonth} setMonth={setMonth}/>
+            <Transactions transactions={transactions} activeMonth={activeMonth}/>
+        </div>
+    );
 
-    componentWillUnmount() {
-    }
 }
 
 export default App;

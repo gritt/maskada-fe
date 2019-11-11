@@ -1,25 +1,21 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect} from "react";
 import {GetMonthName} from "../Services/Datetime";
 
-function Wallet(props) {
-    const [activeMonth, setMonth] = useState(
-        GetMonthName(Date.now())
-    );
-
-    useEffect(() => {
-        document.title = activeMonth;
-    });
-
+function Wallet({transactions, activeMonth, setMonth}) {
     return (
         <header className="sticky">
-            <Timeline transactions={props.transactions} activeMonth={activeMonth} setMonth={setMonth}/>
-            <Balance transactions={props.transactions} activeMonth={activeMonth}/>
+            <Timeline transactions={transactions} activeMonth={activeMonth} setMonth={setMonth}/>
+            <Balance transactions={transactions} activeMonth={activeMonth}/>
         </header>
     );
 }
 
 function Timeline({transactions, activeMonth, setMonth}) {
     const timeline = getTimeline(transactions);
+
+    useEffect(() => {
+        document.title = activeMonth;
+    });
 
     return (
         <nav className="months-nav">
