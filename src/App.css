@@ -115,6 +115,14 @@ header {
     margin: 0 auto;
 }
 
+.content__no-transactions {
+    display: grid;
+    width: 100%;
+    text-align: center;
+    font-size: var(--text-m);
+    color: var(--text-color);
+}
+
 .transaction {
     display: flex;
 }

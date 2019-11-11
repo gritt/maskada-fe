@@ -54,9 +54,12 @@ function Balance({activeMonth, transactions}) {
 }
 
 function getBalance(transactions, activeMonth) {
-    const monthlyTransactions = transactions[activeMonth];
-
     let balance = 0;
+    if (transactions[activeMonth] === undefined) {
+        return balance;
+    }
+
+    const monthlyTransactions = transactions[activeMonth];
     monthlyTransactions.forEach(transaction => {
         balance += transaction.amount
     });

@@ -12,9 +12,15 @@ function Transactions({transactions, activeMonth}) {
         );
     }
 
+    function NoTransactions() {
+        return (
+            <i className="content__no-transactions">"if I don't buy anything, discount is bigger..."</i>
+        );
+    }
+
     return (
         <section className="content">
-            <TransactionsList/>
+            {transactions[activeMonth] === undefined ? <NoTransactions/> : <TransactionsList/>}
         </section>
     );
 }

@@ -82,7 +82,7 @@ const testTransactions = [
         "amount": 80,
         "type": 2,
         "category": "Food",
-        "date": "2019-11-02T03:27:57Z",
+        "date": "2019-12-02T03:27:57Z",
         "name": ""
     },
     {
