@@ -41,7 +41,7 @@ function getTimeline(transactions) {
         timeline.push(month);
     }
 
-    return timeline
+    return timeline;
 }
 
 function Balance({activeMonth, transactions}) {
@@ -61,10 +61,10 @@ function getBalance(transactions, activeMonth) {
 
     const monthlyTransactions = transactions[activeMonth];
     monthlyTransactions.forEach(transaction => {
-        balance += transaction.amount
+        balance += transaction.amount;
     });
 
-    return balance
+    return balance;
 }
 
 export {Wallet}
