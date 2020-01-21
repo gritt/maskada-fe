@@ -35,10 +35,10 @@ function Timeline({transactions, activeMonth, setMonth}) {
 
 function getTimeline(transactions) {
     const timeline = Object.keys(transactions);
-    const month = GetMonthName(Date.now());
 
-    if (!timeline.includes(month)) {
-        timeline.push(month);
+    const currentMonth = GetMonthName(Date.now());
+    if (!timeline.includes(currentMonth)) {
+        timeline.push(currentMonth);
     }
 
     return timeline;

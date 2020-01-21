@@ -3,10 +3,10 @@
  */
 function GetMonthName(datetime) {
     const date = new Date(datetime);
-    const longMonth = date.toLocaleString('default', {month: 'long'});
-    const shortenYear = date.getFullYear().toString().substr(-2);
+    const month = date.toLocaleString('default', {month: 'long'});
+    const year = date.getFullYear().toString().substr(-2);
 
-    return longMonth + " " + shortenYear
+    return month + " " + year
 }
 
 export {GetMonthName}
