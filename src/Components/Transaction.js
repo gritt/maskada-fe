@@ -1,5 +1,12 @@
 import React from "react";
 
+// Debit is a transaction which is subtracted.
+const DEBIT = 1;
+// Credit is a transaction which is subtracted the next month.
+const CREDIT = 2;
+// Income is a transaction which is summed.
+const INCOME = 3;
+
 function Transaction(props) {
     return (
         <li className={"transaction"}>
@@ -32,11 +39,11 @@ function Info(props) {
 
 function getStyle(type) {
     switch (type) {
-        case 1 :
+        case DEBIT :
             return "transaction__type-debit";
-        case 2:
+        case CREDIT:
             return "transaction__type-credit";
-        case 3:
+        case INCOME:
             return "transaction__type-income";
         default:
             return "transaction__type-undefined";
