@@ -1,8 +1,7 @@
 import {GetMonthName} from "./Datetime";
 
 const ByMonthName = (transaction) => {
-    let date = new Date(transaction.date);
-    return GetMonthName(date);
+    return GetMonthName(transaction.date);
 };
 
 const GroupBy = (collatorFn, transactions) => {
