@@ -1,70 +1,37 @@
 import React, {useEffect} from "react";
-import {GetMonthName} from "../Services/Datetime";
+import {GetBalance, GetTimeline} from "../Services/Transaction";
 
-function Wallet({transactions, activeMonth, setMonth}) {
-    return (
-        <header className="sticky">
-            <Timeline transactions={transactions} activeMonth={activeMonth} setMonth={setMonth}/>
-            <Balance transactions={transactions} activeMonth={activeMonth}/>
-        </header>
-    );
-}
-
-function Timeline({transactions, activeMonth, setMonth}) {
-    const timeline = getTimeline(transactions);
-
+function Wallet({transactions, activeMonth, setActiveMonth}) {
     useEffect(() => {
         document.title = activeMonth;
     });
 
-    return (
-        <nav className="months-nav">
-            <ul className="months-nav__list">
-                {timeline.map((month) => {
-                    let style = month === activeMonth ? 'months-nav__list--active' : undefined;
-                    return (
-                        <li className={style} key={month} onClick={() => {setMonth(month)}}>
-                            {month}
-                        </li>
-                    );
-                })}
-            </ul>
-        </nav>
-    );
-}
+    const timeline = GetTimeline(transactions);
 
-function getTimeline(transactions) {
-    const timeline = Object.keys(transactions);
+    const balance = GetBalance(activeMonth, transactions);
+    const balanceStyle = balance >= 0 ? "account account--positive" : "account account--negative";
 
-    const currentMonth = GetMonthName(Date.now());
-    if (!timeline.includes(currentMonth)) {
-        timeline.push(currentMonth);
+    function Month(month) {
+        const monthStyle = month === activeMonth ? 'months-nav__list--active' : undefined;
+        return (
+            <li className={monthStyle} key={month} onClick={() => {setActiveMonth(month)}}>
+                {month}
+            </li>
+        );
     }
 
-    return timeline;
-}
-
-function Balance({activeMonth, transactions}) {
-    const balance = getBalance(transactions, activeMonth);
-    const status = balance >= 0 ? "account account--positive" : "account account--negative";
-
     return (
-        <h1 className={status}>$ {balance}</h1>
+        <header className="sticky">
+            <nav className="months-nav">
+                <ul className="months-nav__list">
+                    {timeline.map(month => {
+                        return Month(month)
+                    })}
+                </ul>
+            </nav>
+            <h1 className={balanceStyle}>$ {balance}</h1>
+        </header>
     );
-}
-
-function getBalance(transactions, activeMonth) {
-    let balance = 0;
-    if (transactions[activeMonth] === undefined) {
-        return balance;
-    }
-
-    const monthlyTransactions = transactions[activeMonth];
-    monthlyTransactions.forEach(transaction => {
-        balance += transaction.amount;
-    });
-
-    return balance;
 }
 
 export {Wallet}

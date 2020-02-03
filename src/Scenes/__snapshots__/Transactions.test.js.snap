@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Transactions renders scene with a list of transactions of the active month 1`] = `
+<section
+  className="content"
+>
+  <ul>
+    <li
+      className="transaction"
+    >
+      <span
+        className="transaction__description"
+      >
+        <span
+          className="transaction__name"
+        >
+          Health
+        </span>
+        <span
+          className="transaction__date"
+        >
+          2020-01-25T16:35:13Z
+        </span>
+      </span>
+      <span>
+        <span
+          className="transaction__amount transaction__type-credit"
+        >
+          $ 
+          300
+        </span>
+        <span
+          className="transaction__connection"
+        />
+      </span>
+    </li>
+  </ul>
+</section>
+`;
+
+exports[`Transactions renders scene with empty list 1`] = `
+<section
+  className="content"
+>
+  <i
+    className="content__no-transactions"
+  >
+    "if I don't buy anything, discount is bigger..."
+  </i>
+</section>
+`;

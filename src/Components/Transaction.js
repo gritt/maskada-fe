@@ -8,32 +8,23 @@ const CREDIT = 2;
 const INCOME = 3;
 
 function Transaction(props) {
+    let style = "transaction__amount " + getStyle(props.type);
+
+    let name = props.name === ""
+        ? props.category
+        : props.name;
+
     return (
         <li className={"transaction"}>
-            <Info date={props.date} name={props.name} category={props.category}/>
-            <Amount amount={props.amount} type={props.type}/>
+            <span className="transaction__description">
+                <span className="transaction__name">{name}</span>
+                <span className="transaction__date">{props.date}</span>
+            </span>
+            <span>
+                <span className={style}>$ {props.amount}</span>
+                <span className="transaction__connection"/>
+            </span>
         </li>
-    );
-}
-
-function Amount(props) {
-    let style = "transaction__amount " + getStyle(props.type);
-    return (
-        <span>
-            <span className={style}>$ {props.amount}</span>
-            <span className="transaction__connection"/>
-        </span>
-    );
-}
-
-function Info(props) {
-    let name = props.name === "" ? props.category : props.name;
-
-    return (
-        <span className="transaction__description">
-            <span className="transaction__name">{name}</span>
-            <span className="transaction__date">{props.date}</span>
-        </span>
     );
 }
 

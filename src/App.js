@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import './App.css';
 import {Wallet} from "./Components/Wallet";
 import {Transactions} from "./Scenes/Transactions";
@@ -7,18 +7,11 @@ import {Get} from "./Services/API";
 import {ByMonthName, GroupBy} from "./Services/Transaction";
 
 function App() {
-    const [activeMonth, setMonth] = useState(
-        GetMonthName(Date.now())
-    );
-
-    const [transactions, setTransactions] = useState(
-        []
-    );
+    const [activeMonth, setActiveMonth] = useState(GetMonthName(Date.now()));
+    const [transactions, setTransactions] = useState([]);
 
     const transactionsHandler = (transactions, error) => {
-        setTransactions(
-            GroupBy(ByMonthName, transactions)
-        );
+        setTransactions(GroupBy(ByMonthName, transactions));
     };
 
     useEffect(() => {
@@ -27,7 +20,7 @@ function App() {
 
     return (
         <div className="app">
-            <Wallet transactions={transactions} activeMonth={activeMonth} setMonth={setMonth}/>
+            <Wallet transactions={transactions} activeMonth={activeMonth} setActiveMonth={setActiveMonth}/>
             <Transactions transactions={transactions} activeMonth={activeMonth}/>
         </div>
     );

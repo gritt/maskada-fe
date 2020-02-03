@@ -18,9 +18,15 @@ function Transactions({transactions, activeMonth}) {
         );
     }
 
+    let monthHasTransactions = transactions[activeMonth] === undefined;
+
     return (
         <section className="content">
-            {transactions[activeMonth] === undefined ? <NoTransactions/> : <TransactionsList/>}
+            {
+                monthHasTransactions
+                    ? <NoTransactions/>
+                    : <TransactionsList/>
+            }
         </section>
     );
 }
