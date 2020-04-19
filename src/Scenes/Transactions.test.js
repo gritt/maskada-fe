@@ -1,7 +1,7 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+import React from 'react'
+import renderer from 'react-test-renderer'
 
-import {Transactions} from "./Transactions";
+import {Transactions} from "./Transactions"
 
 const testTransactions = {
     "January 20": [{
@@ -20,23 +20,24 @@ const testTransactions = {
         "name": "",
         "type": 3
     }]
-};
+}
 
-const testMonth = "January 20";
 
 describe("Transactions", () => {
+    const testMonth = "January 20"
+
     it("renders scene with empty list", () => {
         // given
         const given = renderer.create(
             <Transactions transactions={[]} activeMonth={undefined}></Transactions>
-        );
+        )
 
         // when
-        const got = given.toJSON();
+        const got = given.toJSON()
 
         // then
-        expect(got).toMatchSnapshot();
-    });
+        expect(got).toMatchSnapshot()
+    })
     it('renders scene with a list of transactions of the active month', () => {
         // given
         const given = renderer.create(
@@ -44,12 +45,12 @@ describe("Transactions", () => {
                 transactions={testTransactions}
                 activeMonth={testMonth}>
             </Transactions>
-        );
+        )
 
         // when
-        const got = given.toJSON();
+        const got = given.toJSON()
 
         // then
-        expect(got).toMatchSnapshot();
-    });
-});
+        expect(got).toMatchSnapshot()
+    })
+})

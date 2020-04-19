@@ -1,18 +1,12 @@
-import React from "react";
-
-// Debit is a transaction which is subtracted.
-const DEBIT = 1;
-// Credit is a transaction which is subtracted the next month.
-const CREDIT = 2;
-// Income is a transaction which is summed.
-const INCOME = 3;
+import React from "react"
+import {CREDIT, DEBIT, INCOME} from "../Services/Transaction"
 
 function Transaction(props) {
-    let style = "transaction__amount " + getStyle(props.type);
+    let style = "transaction__amount " + getStyle(props.type)
 
     let name = props.name === ""
         ? props.category
-        : props.name;
+        : props.name
 
     return (
         <li className={"transaction"}>
@@ -25,19 +19,19 @@ function Transaction(props) {
                 <span className="transaction__connection"/>
             </span>
         </li>
-    );
+    )
 }
 
 function getStyle(type) {
     switch (type) {
         case DEBIT :
-            return "transaction__type-debit";
+            return "transaction__type-debit"
         case CREDIT:
-            return "transaction__type-credit";
+            return "transaction__type-credit"
         case INCOME:
-            return "transaction__type-income";
+            return "transaction__type-income"
         default:
-            return "transaction__type-undefined";
+            return "transaction__type-undefined"
     }
 }
 
