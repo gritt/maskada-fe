@@ -3,71 +3,68 @@
 [![Build Status](https://travis-ci.org/gritt/maskada-fe.svg?branch=master)](https://travis-ci.org/gritt/maskada-fe)
 [![codecov](https://codecov.io/gh/gritt/maskada-fe/branch/master/graph/badge.svg)](https://codecov.io/gh/gritt/maskada-fe)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### About
 
-## Available Scripts
+Maskada (from portuguese *mascada*, means money) is the [React](https://reactjs.org) 
+client of [maskada-api](https://github.com/gritt/maskada). It aims to perform very simple 
+operations, to make it easier track your finances.
 
-In the project directory, you can run:
+###### ROADMAP
 
-### `npm start`
+- ✓︎ List transactions by month
+- ✓︎ Switch between months
+- ✓︎ Calculate monthly balance
+- ✘︎ Create transactions
+- ✘︎︎ Create transactions with category
+- ✘ List transactions grouped by type (eg: credit card)
+- ✘ Manage transaction status like: delete/pending/done
+- ✘ Create recurring transactions
+- ✘ UI animations / transitions
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To make it simple to calculate, all transactions will belong to a type:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+[`Transaction.js`](./src/Services/Transaction.js)
+```
+// Debit is a transaction which is subtracted.
+const DEBIT = 1
 
-### `npm test`
+// Credit is a transaction which is subtracted the next month.
+const CREDIT = 2
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+// Income is a transaction which is summed.
+const INCOME = 3
+```
 
-### `npm run build`
+All the calculations happen in the client side.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Architecture
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app),
+code is split between: 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `Services`: App business logic 
+- `Components`: Reusable UI elements
+- `Scenes`: What the end user sees
 
-### `npm run eject`
+### Available Scripts
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+##### `npm install`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Install project dependencies.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+##### `npm start`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Runs the app in the development mode, open [http://localhost:3000](http://localhost:3000) 
+to view it in the browser.
 
-## Learn More
+##### `npm test`
+Launches the test runner in the interactive watch mode.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+##### `npm run build`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Builds the app for production to the `build` folder, your app is ready to be deployed!
 
-### Code Splitting
+### Contributing
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+> Currently, this project is mostly for studying purposes, and it's not hosted anywhere.
+> If you're interested in learning react, hooks and tests, feel free to fork it.
