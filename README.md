@@ -1,3 +1,8 @@
+# Maskada
+
+[![Build Status](https://travis-ci.org/gritt/maskada-fe.svg?branch=master)](https://travis-ci.org/gritt/maskada-fe)
+[![codecov](https://codecov.io/gh/gritt/maskada-fe/branch/master/graph/badge.svg)](https://codecov.io/gh/gritt/maskada-fe)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
