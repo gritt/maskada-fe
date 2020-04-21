@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react"
 import './App.css'
 import {Wallet} from "./Components/Wallet"
-import {Transactions} from "./Scenes/Transactions"
+import {ListTransactions} from "./Scenes/ListTransactions"
 import {GetMonthName} from "./Services/Datetime"
 import {Get} from "./Services/API"
 import {ByMonthName, GroupBy} from "./Services/Transaction"
+import {AddTransaction} from "./Scenes/AddTransaction";
 
 function App() {
     const [activeMonth, setActiveMonth] = useState(GetMonthName(Date.now()))
@@ -21,7 +22,8 @@ function App() {
     return (
         <div className="app">
             <Wallet transactions={transactions} activeMonth={activeMonth} setActiveMonth={setActiveMonth}/>
-            <Transactions transactions={transactions} activeMonth={activeMonth}/>
+            <AddTransaction/>
+            <ListTransactions transactions={transactions} collation={activeMonth}/>
         </div>
     )
 

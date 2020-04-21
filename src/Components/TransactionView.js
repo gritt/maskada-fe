@@ -1,7 +1,9 @@
-import React from "react"
-import {CREDIT, DEBIT, INCOME} from "../Services/Transaction"
+import {CREDIT, DEBIT, INCOME} from "../Services/Transaction";
+import React from "react";
+import "./Transaction.css"
+import "./TransactionView.css"
 
-function Transaction(props) {
+function View(props) {
     let style = "transaction__amount " + getStyle(props.type)
 
     let name = props.name === ""
@@ -31,8 +33,8 @@ function getStyle(type) {
         case INCOME:
             return "transaction__type-income"
         default:
-            return "transaction__type-undefined"
+            return "transaction__type-unknown"
     }
 }
 
-export {Transaction}
+export {View}

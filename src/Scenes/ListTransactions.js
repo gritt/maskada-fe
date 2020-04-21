@@ -1,12 +1,13 @@
 import React from 'react'
-import {Transaction} from "../Components/Transaction"
+import {View} from "../Components/TransactionView"
+import "./ListTransactions.css"
 
-function Transactions({transactions, activeMonth}) {
+function ListTransactions({transactions, collation}) {
     function TransactionsList() {
         return (
             <ul>
-                {transactions[activeMonth].map((transaction) => {
-                    return (<Transaction {...transaction} key={transaction.id}/>)
+                {transactions[collation].map((transaction) => {
+                    return (<View {...transaction} key={transaction.id}/>)
                 })}
             </ul>
         )
@@ -18,12 +19,12 @@ function Transactions({transactions, activeMonth}) {
         )
     }
 
-    let monthHasTransactions = transactions[activeMonth] === undefined
+    let hasTransactions = transactions[collation] === undefined
 
     return (
         <section className="content">
             {
-                monthHasTransactions
+                hasTransactions
                     ? <NoTransactions/>
                     : <TransactionsList/>
             }
@@ -31,4 +32,4 @@ function Transactions({transactions, activeMonth}) {
     )
 }
 
-export {Transactions}
+export {ListTransactions}

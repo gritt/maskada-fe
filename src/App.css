@@ -1,22 +1,39 @@
 body {
-    --highlight-background-color: #f9f9f9;
-    --highlight-background-color-active: #ffffff;
-    --highlight-border-color: #d9d9d9;
+    --background-color: #f9f9f9;
+    --background-color-active: #FFFFFF;
+    --border-color: #D8D8D8;
 
-    --income-text-color: forestgreen;
-    --income-highlight-color: rgba(34, 139, 34, 0.015);
 
-    --debit-text-color: orangered;
-    --debit-hightlight-color: rgba(255, 69, 0, 0.015);
+    --text-color: #626262;
+    --text-color-active: #4F4F4F;
 
-    --credit-card-text-color: purple;
-    --credit-card-highlight-color: rgba(128, 0, 128, 0.015);
 
-    --text-color: #999;
-    --text-color-active: #555;
+    --income-text-color: rgb(74, 140, 62);
+    --income-background-color: rgba(74, 140, 62, 0.025);
+
+    --debit-text-color: rgb(239, 95, 98);
+    --debit-background-color: rgba(239, 95, 98, 0.025);
+
+    --credit-card-text-color: rgb(142, 59, 191);
+    --credit-background-color: rgba(142, 59, 191, 0.025);
+
 
     --text-color-positive: var(--income-text-color);
     --text-color-negative: var(--debit-text-color);
+
+
+    --text-color-sucess: #4A8C3E;
+    --border-color-sucess: #6AC35A;
+    --background-color-success: #87F573;
+
+    --text-color-danger: #883335;
+    --border-color-danger: #BE4A4C;
+    --background-color-danger: #EF5F62;
+
+    --text-color-info: #27688E;
+    --border-color-info: #3A92C6;
+    --background-color-info: #4CB8F9;
+
 
     --text-xsm: 0.70rem;
     --text-sm: 0.90rem;
@@ -38,146 +55,8 @@ body {
 .app {
 }
 
-.sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: auto;
-}
-
-header {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--highlight-background-color);
-    box-shadow: 0 1px 3px var(--highlight-border-color);
-    border-bottom: solid 1px var(--highlight-background-color);
-    margin-bottom: var(--margin-sm);
-}
-
-.months-nav {
-    padding: var(--pading-xsm);
-    overflow: hidden;
-}
-
-.months-nav__list {
-    width: var(--width-full);
-    display: inline-flex;
-    list-style: none;
-    overflow-y: scroll;
-    scroll-behavior: smooth;
-    font-weight: 300;
-
-    font-size: var(--text-xsm);
-    color: var(--text-color);
-}
-
-.months-nav__list li {
-    height: auto;
-    min-width: 95px;
-    text-align: center;
-    border-radius: 50px;
-    border: solid 1px transparent;
-    user-select: none;
-    padding: var(--pading-xsm);
-    margin: 0 var(--margin-xsm);
-}
-
-.months-nav__list li:hover {
-    cursor: pointer;
-    border: solid 1px var(--highlight-border-color);
-}
-
-.months-nav__list .months-nav__list--active {
-    background-color: var(--highlight-background-color-active);
-    border: solid 1px var(--highlight-border-color);
-    color: var(--text-color-active)
-}
-
-.account {
-    display: flex;
-    padding-top: var(--pading-m);
-    padding-bottom: var(--pading-m);
-
-    font-weight: 300;
-    font-size: var(--text-l);
-    justify-content: center;
-}
-
-.account--positive {
-    color: var(--text-color-positive)
-}
-
-.account--negative {
-    color: var(--text-color-negative)
-}
-
 .content {
     padding-top: 15rem;
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
-}
-
-.content__no-transactions {
-    display: grid;
-    width: 100%;
-    text-align: center;
-    font-size: var(--text-m);
-    color: var(--text-color);
-}
-
-.transaction {
-    display: flex;
-}
-
-.transaction__description {
-    height: 80px;
-    width: 100%;
-    min-width: 200px;
-    display: inline-grid;
-    align-content: center;
-}
-
-.transaction__name {
-    font-size: var(--text-sm);
-    color: var(--text-color-active);
-}
-
-.transaction__date {
-    color: var(--text-color);
-    font-size: var(--text-xsm);
-}
-
-.transaction__amount {
-    width: 80px;
-    height: 80px;
-    border-radius: 100%;
-    display: inline-grid;
-    align-content: center;
-    text-align: center;
-    font-size: var(--text-sm);
-}
-
-.transaction__connection {
-    display: flex;
-    width: 40px;
-    height: 30px;
-    border-right: solid 1px var(--highlight-border-color);
-}
-
-.transaction__type-income {
-    border: solid 1px var(--income-text-color);
-    color: var(--income-text-color);
-    background-color: var(--income-highlight-color);
-}
-
-.transaction__type-credit {
-    border: solid 1px var(--credit-card-text-color);
-    color: var(--credit-card-text-color);
-    background-color: var(--credit-card-highlight-color);
-}
-
-.transaction__type-debit {
-    border: solid 1px var(--debit-text-color);
-    color: var(--debit-text-color);
-    background-color: var(--debit-hightlight-color);
 }

@@ -1,5 +1,6 @@
 import React, {useEffect} from "react"
 import {GetBalance, GetTimeline} from "../Services/Transaction"
+import "./Wallet.css"
 
 function Wallet({transactions, activeMonth, setActiveMonth}) {
     useEffect(() => {

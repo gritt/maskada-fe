@@ -14,12 +14,13 @@ operations, to make it easier track your finances.
 - ✓︎ List transactions by month
 - ✓︎ Switch between months
 - ✓︎ Calculate monthly balance
-- ✘︎ Create transactions
+- ☕︎ Create transactions
 - ✘︎︎ Create transactions with category
 - ✘ List transactions grouped by type (eg: credit card)
 - ✘ Manage transaction status like: delete/pending/done
 - ✘ Create recurring transactions
-- ✘ UI animations / transitions
+- ✘ UI Dark mode
+- ✘ UI Animations/Transitions
 
 To make it simple to calculate, all transactions will belong to a type:
 

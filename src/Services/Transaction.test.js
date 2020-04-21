@@ -28,12 +28,16 @@ describe('Transaction Service', () => {
     ]
 
     describe('GroupBy', () => {
-        it('returns empty object when empty list of transactions is given', () => {
-            // given
-            const given = []
-
+        it('returns empty object when undefined is given', () => {
             // when
-            const got = GroupBy(ByMonthName, given)
+            const got = GroupBy(ByMonthName, undefined)
+
+            // then
+            expect(got).toEqual({})
+        })
+        it('returns empty object when empty list of transactions is given', () => {
+            // when
+            const got = GroupBy(ByMonthName, [])
 
             // then
             expect(got).toEqual({})

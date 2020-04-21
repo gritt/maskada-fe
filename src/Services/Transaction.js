@@ -8,9 +8,10 @@ const CREDIT = 2
 const INCOME = 3
 
 /**
- * @return {array}
+ * @return {object}
  */
 const GroupBy = (collatorFn, transactions) => {
+    if (!transactions) return {}
     return transactions.reduce((accumulator, transaction) => {
         const key = collatorFn(transaction)
 
@@ -87,5 +88,22 @@ function GetCreditBalance(month, transactions) {
     return balance
 }
 
+/**
+ * @param type {CREDIT|DEBIT|INCOME}
+ * @returns {string}
+ */
+function GetTypeName(type) {
+    switch (type) {
+        case DEBIT:
+            return 'Debit'
+        case CREDIT:
+            return 'Credit'
+        case INCOME:
+            return 'Income'
+        default:
+            return 'Unknown'
+    }
+}
+
 export {DEBIT, CREDIT, INCOME}
-export {GetBalance, GetTimeline, GroupBy, ByMonthName}
+export {GetBalance, GetTimeline, GetTypeName, GroupBy, ByMonthName}
