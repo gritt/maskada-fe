@@ -14,4 +14,16 @@ const Get = function (resource, callback) {
         })
 }
 
-export {BaseURL, Get}
+const Post = function (resource, callback, payload) {
+    const url = `${BaseURL}/${resource}`
+
+    axios.post(url, payload)
+        .then((response) => {
+            callback(response.data, undefined)
+        })
+        .catch((error) => {
+            callback(undefined, error)
+        })
+}
+
+export {BaseURL, Get, Post}
