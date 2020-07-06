@@ -1,6 +1,6 @@
 import {CREDIT, DEBIT, INCOME} from "../Services/Transaction";
 import React from "react";
-import "./Transaction.css"
+import "./Base.css"
 import "./TransactionView.css"
 
 function View(props) {

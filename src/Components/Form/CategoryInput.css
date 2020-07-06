@@ -1,0 +1,42 @@
+.category-input {
+    height: 50%;
+    display: flex;
+
+    border-radius: 0 0 8px 8px;
+    border: solid 1px var(--border-color);
+}
+
+.category-input ul {
+    width: 100%;
+    display: inline-flex;
+    list-style: none;
+
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+}
+
+.category-input ul li {
+    min-width: 100px;
+    margin: var(--margin-sm) var(--margin-sm);
+
+    border-radius: 25px;
+    border: solid 1px transparent;
+
+    padding: 0 0.5rem;
+    line-height: 2rem;
+    text-align: center;
+    font-weight: 300;
+    font-size: var(--text-m);
+    user-select: none;
+    outline: 0;
+}
+
+.category-input ul li:hover {
+    cursor: pointer;
+    border: solid 1px var(--border-color);
+}
+
+.category-input .category-input--active {
+    background-color: var(--background-color-active);
+    border: solid 1px var(--border-color);
+}

@@ -14,9 +14,9 @@ operations, to make it easier track your finances.
 - ✓︎ List transactions by month
 - ✓︎ Switch between months
 - ✓︎ Calculate monthly balance
-- ☕︎ Create transactions
-- ✘︎︎ Create transactions with category
-- ✘ List transactions grouped by type (eg: credit card)
+- ✓︎ Create transactions
+- ✓︎︎ Create transactions with category
+- ☕︎ List transactions grouped by type (eg: credit card)
 - ✘ Manage transaction status like: delete/pending/done
 - ✘ Create recurring transactions
 - ✘ UI Dark mode

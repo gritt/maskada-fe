@@ -1,25 +1,50 @@
-import React from 'react'
-import {Form} from "../Components/TransactionForm";
+import React, {useState} from 'react'
+import {Post} from "../Services/API";
+import {FormBuilder} from "../Components/Form/FormBuilder";
+import {Loading, Success} from "../Components/Form/Animations";
 
 function AddTransaction() {
-    const createTransaction = (transaction, successCallback) => {
-        // {
-        //     "id": 10,
-        //     "amount": 4050,
-        //     "type": 3,
-        //     "category": "Thoughtworks",
-        //     "date": "2020-03-18T23:52:02Z",
-        //     "name": ""
-        // }
+    // `form` > `loading` > `success` || `error`
+    const [stage, setStage] = useState('form')
 
-        // create transaction with API.js
+    function create(transaction) {
+        try {
+            console.log('loading...')
+            setStage('loading')
 
-        // successCallback()
+            const callback = (response, error) => {
+                return !error
+                    ? setStage('success')
+                    : setStage('error')
+            }
+
+            transaction.validate()
+
+            Post('transaction', callback, transaction.serialize())
+
+        } catch (e) {
+            console.log('create::', e)
+            setStage('error')
+        }
+    }
+
+    function viewStage() {
+        switch (stage) {
+            case "form":
+                return <FormBuilder submitHandler={create}/>
+            case "error":
+                return <FormBuilder submitHandler={create} withError={true}/>
+            case "loading":
+                return <Loading/>
+            case 'success': {
+                return <Success/>
+            }
+        }
     }
 
     return (
         <section className="content">
-            <Form onSubmit={createTransaction}/>
+            {viewStage()}
         </section>
     )
 }

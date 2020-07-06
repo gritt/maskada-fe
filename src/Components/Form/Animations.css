@@ -1,0 +1,50 @@
+.animation-place {
+    display: flex;
+}
+
+.success {
+    z-index: -1;
+    width: 8rem;
+    height: 8rem;
+    margin: 0 auto;
+
+    line-height: 8rem;
+    text-align: center;
+    font-weight: 300;
+    font-size: var(--text-xl);
+
+    color: var(--text-color-success);
+    border: solid 2px var(--border-color-success);
+    box-shadow: 0 1px 3px var(--border-color);
+    border-radius: 100%;
+}
+
+.loading {
+    z-index: -1;
+    width: 8rem;
+    height: 8rem;
+    margin: 0 auto;
+}
+
+.loading:after {
+    width: 8rem;
+    height: 8rem;
+    content: " ";
+    display: block;
+
+    border: solid 2px;
+    border-radius: 100%;
+    border-color: var(--background-color-info) transparent var(--background-color-info) transparent;
+    box-shadow: 0 1px 3px var(--border-color);
+
+    animation: loading-animation 0.5s linear infinite;
+}
+
+@keyframes loading-animation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

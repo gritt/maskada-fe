@@ -22,8 +22,8 @@ body {
     --text-color-negative: var(--debit-text-color);
 
 
-    --text-color-sucess: #4A8C3E;
-    --border-color-sucess: #6AC35A;
+    --text-color-success: #4A8C3E;
+    --border-color-success: #6AC35A;
     --background-color-success: #87F573;
 
     --text-color-danger: #883335;
