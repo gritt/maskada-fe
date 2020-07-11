@@ -2,14 +2,14 @@ import React, {useState} from 'react'
 import {Post} from "../Services/API";
 import {FormBuilder} from "../Components/Form/FormBuilder";
 import {Loading, Success} from "../Components/Form/Animations";
+import {Transaction} from "../Components/Form/Transaction";
 
 function AddTransaction() {
-    // `form` > `loading` > `success` || `error`
+    const transaction = Transaction()
     const [stage, setStage] = useState('form')
 
     function create(transaction) {
         try {
-            console.log('loading...')
             setStage('loading')
 
             const callback = (response, error) => {
@@ -23,7 +23,6 @@ function AddTransaction() {
             Post('transaction', callback, transaction.serialize())
 
         } catch (e) {
-            console.log('create::', e)
             setStage('error')
         }
     }
@@ -31,13 +30,30 @@ function AddTransaction() {
     function viewStage() {
         switch (stage) {
             case "form":
-                return <FormBuilder submitHandler={create}/>
+                return <FormBuilder
+                    submit={create}
+                    transaction={transaction}
+                />
+
             case "error":
-                return <FormBuilder submitHandler={create} withError={true}/>
+                return <FormBuilder
+                    submit={create}
+                    transaction={transaction}
+                    errors={true}/>
+
             case "loading":
                 return <Loading/>
+
             case 'success': {
+                setTimeout(() => {
+                    setStage('form')
+                }, 2000)
+
                 return <Success/>
+            }
+
+            default : {
+                return <FormBuilder submit={create}/>
             }
         }
     }
