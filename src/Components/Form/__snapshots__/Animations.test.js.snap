@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Animations renders loading 1`] = `
+<div>
+  <div
+    class="animation-place"
+  >
+    <div
+      class="loading"
+    />
+  </div>
+</div>
+`;
+
+exports[`Animations renders success 1`] = `
+<div>
+  <div
+    class="animation-place"
+  >
+    <div
+      class="success"
+    >
+      ✓︎
+    </div>
+  </div>
+</div>
+`;
