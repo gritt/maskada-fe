@@ -2,7 +2,7 @@ import React from "react";
 import {GetTypeName} from "../../Services/Transaction";
 import "./TypeInput.css"
 
-const TypeInput = ({transaction}) => {
+function TypeInput ({transaction}) {
     let style = `type-input ${transaction.decoration()}`
 
     const onClick = () => {

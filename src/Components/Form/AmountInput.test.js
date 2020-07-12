@@ -4,14 +4,14 @@ import '@testing-library/jest-dom/extend-expect'
 import {AmountInput} from "./AmountInput";
 
 describe('AmountInput', () => {
-    it('renders with props', () => {
-        // given
-        const givenTransaction = {
-            decoration: jest.fn(),
-            amount: 10,
-            setAmount: jest.fn(),
-        }
+    // given
+    let givenTransaction = {
+        decoration: jest.fn(),
+        amount: 10,
+        setAmount: jest.fn(),
+    }
 
+    it('renders with props', () => {
         // when
         render(<AmountInput transaction={givenTransaction}/>)
 
@@ -21,14 +21,8 @@ describe('AmountInput', () => {
         expect(screen.getByRole('spinbutton')).toHaveAttribute('type', 'number')
         expect(screen.getByRole('spinbutton')).toHaveAttribute('value', `${givenTransaction.amount}`)
     });
-    it('should update the amount when value is given', () => {
+    it('should update the amount when value changes', () => {
         // given
-        const givenTransaction = {
-            decoration: jest.fn(),
-            amount: 0,
-            setAmount: jest.fn()
-        }
-
         render(<AmountInput transaction={givenTransaction}/>)
 
         // when
@@ -39,12 +33,6 @@ describe('AmountInput', () => {
     });
     it('should update the amount with zero when negative value is given', () => {
         // given
-        const givenTransaction = {
-            decoration: jest.fn(),
-            amount: 0,
-            setAmount: jest.fn()
-        }
-
         render(<AmountInput transaction={givenTransaction}/>)
 
         // when
