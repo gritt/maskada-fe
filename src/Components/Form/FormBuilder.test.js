@@ -4,13 +4,13 @@ import '@testing-library/jest-dom/extend-expect'
 
 import {FormBuilder} from "./FormBuilder";
 
-import {Transaction} from "./Transaction";
 import {TypeInput} from "./TypeInput";
 import {CategoryInput} from "./CategoryInput";
 import {AmountInput} from "./AmountInput";
 import {CREDIT} from "../../Services/Transaction";
+import useTransaction from "./UseTransaction";
 
-jest.mock("./Transaction")
+jest.mock("./UseTransaction")
 jest.mock("./TypeInput")
 jest.mock("./CategoryInput")
 jest.mock("./AmountInput")
@@ -18,7 +18,7 @@ jest.mock("./AmountInput")
 describe('FormBuilder', () => {
     // given
     beforeEach(() => {
-        Transaction.mockImplementationOnce(() => {
+        useTransaction.mockImplementationOnce(() => {
             return {
                 reset: jest.fn(),
                 decoration: jest.fn(),
@@ -40,7 +40,7 @@ describe('FormBuilder', () => {
 
     it('renders input fields with props', () => {
         // given
-        const mockTransaction = Transaction()
+        const mockTransaction = useTransaction()
 
         // when
         render(<FormBuilder
@@ -56,7 +56,7 @@ describe('FormBuilder', () => {
     });
     it('renders input fields with error feedback', () => {
         // given
-        const mockTransaction = Transaction()
+        const mockTransaction = useTransaction()
 
         // when
         const {container} = render(<FormBuilder
@@ -70,7 +70,7 @@ describe('FormBuilder', () => {
     });
     it('should submit transaction when save is clicked', () => {
         // given
-        const mockTransaction = Transaction()
+        const mockTransaction = useTransaction()
         const mockSubmit = jest.fn()
 
         render(<FormBuilder
@@ -87,7 +87,7 @@ describe('FormBuilder', () => {
     });
     it('should reset transaction when cancel is clicked', () => {
         // given
-        const mockTransaction = Transaction()
+        const mockTransaction = useTransaction()
 
         render(<FormBuilder
             transaction={mockTransaction}

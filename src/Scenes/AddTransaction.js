@@ -2,10 +2,10 @@ import React, {useState} from 'react'
 import {Post} from "../Services/API";
 import {FormBuilder} from "../Components/Form/FormBuilder";
 import {Loading, Success} from "../Components/Form/Animations";
-import {Transaction} from "../Components/Form/Transaction";
+import useTransaction from "../Components/Form/UseTransaction";
 
 function AddTransaction() {
-    const transaction = Transaction()
+    const transaction = useTransaction()
     const [stage, setStage] = useState('form')
 
     function create(transaction) {

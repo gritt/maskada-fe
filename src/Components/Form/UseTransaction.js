@@ -2,8 +2,10 @@ import {useState} from "react";
 import {CREDIT, DEBIT, GetTypeName, INCOME} from "../../Services/Transaction";
 import {Categories} from "./CategoryInput";
 
-// Form Template Function
-function Transaction() {
+/**
+ * abstracts transaction state handling
+ */
+function useTransaction() {
     const [type, setType] = useState(CREDIT)
     const [category, setCategory] = useState(undefined)
     const [amount, setAmount] = useState(0)
@@ -52,4 +54,4 @@ function Transaction() {
     }
 }
 
-export {Transaction}
+export default useTransaction
