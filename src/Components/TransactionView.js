@@ -1,23 +1,21 @@
-import {CREDIT, DEBIT, INCOME} from "../Services/Transaction";
 import React from "react";
+import {CREDIT, DEBIT, INCOME} from "../Services/Transaction";
 import "./Base.css"
 import "./TransactionView.css"
 
-function View(props) {
-    let style = "transaction__amount " + getStyle(props.type)
+function View({type, category, name, date, amount}) {
+    let style = `transaction__amount  ${getStyle(type)}`
 
-    let name = props.name === ""
-        ? props.category
-        : props.name
+    name = !name ? category : name
 
     return (
         <li className={"transaction"}>
             <span className="transaction__description">
                 <span className="transaction__name">{name}</span>
-                <span className="transaction__date">{props.date}</span>
+                <span className="transaction__date">{date}</span>
             </span>
             <span>
-                <span className={style}>$ {props.amount}</span>
+                <span className={style}>$ {amount}</span>
                 <span className="transaction__connection"/>
             </span>
         </li>
