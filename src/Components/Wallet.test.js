@@ -9,9 +9,16 @@ jest.mock('../Services/Transaction')
 describe('Wallet', () => {
     // given
     const givenActiveMonth = 'October 19'
-    const givenTimeline = ['October 19', 'January 20']
+    const givenTimeline = [
+        'October 19',
+        'January 20'
+    ]
+
     const givenBalance = 4050
-    const givenTransactions = [{'some': 'transactions'}, {'test': 'foo'}]
+
+    const givenTransactions = [
+        {'some': 'transactions'},
+    ]
 
     beforeAll(() => {
         GetTimeline.mockImplementation(() => {
@@ -24,14 +31,14 @@ describe('Wallet', () => {
 
     it('sets window title with the active month', () => {
         // when
-        render(<Wallet transactions={[]} activeMonth={givenActiveMonth} setActiveMonth={jest.fn()}/>)
+        render(<Wallet activeMonth={givenActiveMonth}/>)
 
         // then
         expect(document.title).toEqual(givenActiveMonth)
     })
     it('renders timeline with active month', () => {
         // when
-        render(<Wallet transactions={givenTransactions} activeMonth={givenActiveMonth} setActiveMonth={jest.fn()}/>)
+        render(<Wallet transactions={givenTransactions} activeMonth={givenActiveMonth}/>)
 
         // then
         expect(GetTimeline).toBeCalledWith(givenTransactions)
@@ -41,16 +48,33 @@ describe('Wallet', () => {
     })
     it('renders balance with active month', () => {
         // when
-        render(<Wallet transactions={givenTransactions} activeMonth={givenActiveMonth} setActiveMonth={jest.fn()}/>)
+        render(<Wallet transactions={givenTransactions} activeMonth={givenActiveMonth}/>)
 
         // then
         expect(GetBalance).toBeCalledWith(givenActiveMonth, givenTransactions)
         expect(screen.getByRole('heading')).toHaveTextContent(`${givenBalance}`)
     });
-    it('calls to change the active month when is clicked', () => {
+    it('should render balance with positive style', () => {
+        // when
+        render(<Wallet/>)
+
+        // then
+        expect(screen.getByRole('heading')).toHaveClass('account--positive')
+    });
+    it('should render balance with negative style', () => {
+        // given
+        GetBalance.mockImplementation(() => -500)
+
+        // when
+        render(<Wallet/>)
+
+        // then
+        expect(screen.getByRole('heading')).toHaveClass('account--negative')
+    });
+    it('should update the active month when clicked', () => {
         // given
         const givenSetActiveMonth = jest.fn()
-        render(<Wallet transactions={[]} activeMonth={[]} setActiveMonth={givenSetActiveMonth}/>)
+        render(<Wallet setActiveMonth={givenSetActiveMonth}/>)
 
         // when
         fireEvent.click(screen.getByText(givenTimeline[1]))

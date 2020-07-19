@@ -7,19 +7,28 @@ function Wallet({transactions, activeMonth, setActiveMonth}) {
         document.title = activeMonth
     })
 
-    const timeline = GetTimeline(transactions)
-
-    const balance = GetBalance(activeMonth, transactions)
-    const balanceStyle = balance >= 0 ? "account account--positive" : "account account--negative"
-
     function Month(month) {
-        const monthStyle = month === activeMonth ? 'months-nav__list--active' : undefined
+        let style = month === activeMonth
+            ? 'months-nav__list--active'
+            : undefined
+
+        const onClick = () => {
+            setActiveMonth(month)
+        }
+
         return (
-            <li className={monthStyle} key={month} onClick={() => {setActiveMonth(month)}}>
+            <li className={style} key={month} onClick={onClick}>
                 {month}
             </li>
         )
     }
+
+    const timeline = GetTimeline(transactions)
+    const balance = GetBalance(activeMonth, transactions)
+
+    let style = balance >= 0
+        ? "account account--positive"
+        : "account account--negative"
 
     return (
         <header className="sticky">
@@ -30,7 +39,7 @@ function Wallet({transactions, activeMonth, setActiveMonth}) {
                     })}
                 </ul>
             </nav>
-            <h1 className={balanceStyle}>$ {balance}</h1>
+            <h1 className={style}>$ {balance}</h1>
         </header>
     )
 }

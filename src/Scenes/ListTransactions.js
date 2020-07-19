@@ -19,14 +19,14 @@ function ListTransactions({transactions, collation}) {
         )
     }
 
-    let hasTransactions = transactions[collation] === undefined
+    let hasTransactions = !!transactions[collation]
 
     return (
         <section className="content">
             {
                 hasTransactions
-                    ? <NoTransactions/>
-                    : <TransactionsList/>
+                    ? <TransactionsList/>
+                    : <NoTransactions/>
             }
         </section>
     )

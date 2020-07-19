@@ -10,7 +10,7 @@ const INCOME = 3
 /**
  * @return {object}
  */
-const GroupBy = (collatorFn, transactions) => {
+function GroupBy(collatorFn, transactions) {
     if (!transactions) return {}
     return transactions.reduce((accumulator, transaction) => {
         const key = collatorFn(transaction)
@@ -28,7 +28,7 @@ const GroupBy = (collatorFn, transactions) => {
 /**
  * @return {string}
  */
-const ByMonthName = (transaction) => {
+function ByMonthName(transaction) {
     return GetMonthName(transaction.date)
 }
 
