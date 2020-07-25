@@ -26,10 +26,15 @@ describe('AddTransaction', () => {
         useTransaction.mockImplementation(() => {
             return mockUseTransaction
         })
+
         Loading.mockImplementation(() => null)
         Success.mockImplementation(() => null)
 
         Post.mockImplementation(jest.fn())
+    })
+
+    afterEach(() => {
+        jest.resetAllMocks()
     })
 
     it('should render form with props', () => {
@@ -67,8 +72,9 @@ describe('AddTransaction', () => {
         fireEvent.click(screen.getByTestId('test-submit'))
 
         // then
-        expect(mockUseTransaction.validate).toBeCalled()
-        expect(Loading).toBeCalled()
+        expect(useTransaction).toHaveBeenCalled()
+        expect(FormBuilder).toHaveBeenCalled()
+        expect(Loading).toHaveBeenCalled()
     });
     it('should render form with errors when validate throws exception', () => {
         // given
@@ -98,8 +104,114 @@ describe('AddTransaction', () => {
         fireEvent.click(screen.getByTestId('test-submit'))
 
         // then
-        expect(mockUseTransaction.validate).toThrowError(Error('validation error'))
-        expect(FormBuilder).toBeCalledTimes(2)
-        expect(Loading).not.toBeCalled()
+        expect(Loading).not.toHaveBeenCalled()
+
+        expect(useTransaction).toHaveBeenCalled()
+        expect(FormBuilder).toHaveBeenCalledTimes(2)
+        expect(mockUseTransaction.validate).toHaveBeenCalled()
     });
+    it('should render form with errors when post throws exception', () => {
+        // given
+        Post.mockImplementation(() => {
+            throw new Error('API is down')
+        })
+
+        FormBuilder
+            .mockImplementationOnce(({submit, transaction, errors}) => {
+                // then
+                expect(errors).toBeFalsy()
+                return (
+                    <div data-testid={'test-submit'} onClick={() =>
+                        submit(transaction)
+                    }/>
+                )
+            })
+            .mockImplementationOnce(({errors}) => {
+                // then
+                expect(errors).toBeTruthy()
+                return null
+            })
+
+        render(<AddTransaction/>)
+
+        // when
+        fireEvent.click(screen.getByTestId('test-submit'))
+
+        // then
+        expect(useTransaction).toHaveBeenCalled()
+        expect(FormBuilder).toHaveBeenCalledTimes(2)
+        expect(mockUseTransaction.validate).toHaveBeenCalled()
+        expect(Post).toHaveBeenCalled()
+    });
+    it('should render form with errors post callback returns error', () => {
+        // given
+        Post.mockImplementation((path, callback, transaction) => {
+            callback({'status': 'error'}, new Error('error'))
+        })
+
+        FormBuilder
+            .mockImplementationOnce(({submit, transaction, errors}) => {
+                // then
+                expect(errors).toBeFalsy()
+                return (
+                    <div data-testid={'test-submit'} onClick={() =>
+                        submit(transaction)
+                    }/>
+                )
+            })
+            .mockImplementationOnce(({errors}) => {
+                // then
+                expect(errors).toBeTruthy()
+                return null
+            })
+
+        render(<AddTransaction/>)
+
+        // when
+        fireEvent.click(screen.getByTestId('test-submit'))
+
+        // then
+        expect(useTransaction).toHaveBeenCalled()
+        expect(FormBuilder).toHaveBeenCalledTimes(2)
+        expect(mockUseTransaction.validate).toHaveBeenCalled()
+        expect(Post).toHaveBeenCalled()
+    });
+    it('should render success when post callback returns success', () => {
+        // given
+        mockUseTransaction.serialize.mockImplementation(() => {
+            return {'mock': 'serialized transaction'}
+        })
+
+        Post.mockImplementation((path, callback, transaction) => {
+            // then
+            expect(path).toEqual('transaction')
+            expect(callback).toEqual(expect.any(Function));
+            expect(transaction).toEqual(mockUseTransaction.serialize())
+
+            callback({'status': 'success'}, undefined)
+        })
+
+        FormBuilder
+            .mockImplementationOnce(({submit, transaction, errors}) => {
+                // then
+                expect(errors).toBeFalsy()
+                return (
+                    <div data-testid={'test-submit'} onClick={() =>
+                        submit(transaction)
+                    }/>
+                )
+            })
+
+        render(<AddTransaction/>)
+
+        // when
+        fireEvent.click(screen.getByTestId('test-submit'))
+
+        // then
+        expect(useTransaction).toHaveBeenCalled()
+        expect(FormBuilder).toHaveBeenCalled()
+        expect(mockUseTransaction.validate).toHaveBeenCalled()
+        expect(Post).toHaveBeenCalled()
+        expect(Success).toHaveBeenCalled()
+    })
 });
