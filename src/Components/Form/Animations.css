@@ -3,48 +3,101 @@
 }
 
 .success {
-    z-index: -1;
-    width: 8rem;
-    height: 8rem;
-    margin: 0 auto;
+    box-shadow: 0 0 100px var(--color-success);
+}
 
-    line-height: 8rem;
-    text-align: center;
-    font-weight: 300;
-    font-size: var(--text-xl);
-
-    color: var(--text-color-success);
-    border: solid 2px var(--border-color-success);
-    box-shadow: 0 1px 3px var(--border-color);
-    border-radius: 100%;
+.success div {
+    box-shadow: 0 0 130px var(--color-success);
 }
 
 .loading {
+    box-shadow: 0 0 100px var(--color-info);
+}
+
+.loading div {
+    box-shadow: 0 0 130px var(--color-info);
+}
+
+.animation {
     z-index: -1;
+
     width: 8rem;
     height: 8rem;
     margin: 0 auto;
-}
+    position: relative;
 
-.loading:after {
-    width: 8rem;
-    height: 8rem;
-    content: " ";
-    display: block;
-
-    border: solid 2px;
     border-radius: 100%;
-    border-color: var(--background-color-info) transparent var(--background-color-info) transparent;
-    box-shadow: 0 1px 3px var(--border-color);
-
-    animation: loading-animation 0.5s linear infinite;
+    overflow: hidden;
 }
 
-@keyframes loading-animation {
-    0% {
-        transform: rotate(0deg);
+.animation div {
+    position: absolute;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 100%;
+
+    animation: processing 0.5s linear infinite;
+}
+
+.animation div:nth-child(1) {
+    top: 8px;
+    left: 8px;
+    animation-delay: 0s;
+}
+
+.animation div:nth-child(2) {
+    top: 8px;
+    left: 32px;
+    animation-delay: -0.4s;
+}
+
+.animation div:nth-child(3) {
+    top: 8px;
+    left: 56px;
+    animation-delay: -0.8s;
+}
+
+.animation div:nth-child(4) {
+    top: 32px;
+    left: 8px;
+    animation-delay: -0.4s;
+}
+
+.animation div:nth-child(5) {
+    top: 32px;
+    left: 32px;
+    animation-delay: -0.8s;
+}
+
+.animation div:nth-child(6) {
+    top: 32px;
+    left: 56px;
+    animation-delay: -1.2s;
+}
+
+.animation div:nth-child(7) {
+    top: 56px;
+    left: 8px;
+    animation-delay: -0.8s;
+}
+
+.animation div:nth-child(8) {
+    top: 56px;
+    left: 32px;
+    animation-delay: -1.2s;
+}
+
+.animation div:nth-child(9) {
+    top: 56px;
+    left: 56px;
+    animation-delay: -1.6s;
+}
+
+@keyframes processing {
+    0%, 100% {
+        opacity: 1;
     }
-    100% {
-        transform: rotate(360deg);
+    50% {
+        opacity: 0.5;
     }
 }

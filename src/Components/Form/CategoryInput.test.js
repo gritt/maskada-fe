@@ -19,7 +19,6 @@ describe('CategoryInput', () => {
         render(<CategoryInput transaction={givenTransaction}/>)
 
         // then
-        expect(givenTransaction.decoration).toBeCalled()
         expect(screen.getByRole('list').parentElement).toHaveClass('category-input')
 
         const gotCategories = screen.getAllByRole('listitem').map((el) => {

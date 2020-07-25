@@ -1,9 +1,7 @@
 .category-input {
     height: 50%;
     display: flex;
-
-    border-radius: 0 0 8px 8px;
-    border: solid 1px var(--border-color);
+    color: var(--text-color);
 }
 
 .category-input ul {
@@ -16,13 +14,13 @@
 }
 
 .category-input ul li {
-    min-width: 100px;
+    width: auto;
     margin: var(--margin-sm) var(--margin-sm);
 
     border-radius: 25px;
     border: solid 1px transparent;
 
-    padding: 0 0.5rem;
+    padding: 0 1rem;
     line-height: 2rem;
     text-align: center;
     font-weight: 300;
@@ -33,10 +31,8 @@
 
 .category-input ul li:hover {
     cursor: pointer;
-    border: solid 1px var(--border-color);
 }
 
 .category-input .category-input--active {
-    background-color: var(--background-color-active);
-    border: solid 1px var(--border-color);
+    border: solid 1px var(--background-color-shadow-dark);
 }

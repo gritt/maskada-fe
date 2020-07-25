@@ -1,5 +1,12 @@
 .transaction {
     display: flex;
+    width: 95%;
+    margin: 0 auto var(--margin-xl);
+
+    border-radius: 8px;
+    background: var(--app-background);
+    box-shadow: 3px 3px 8px var(--app-background-shadow-dark),
+    -4px -4px 8px white;
 }
 
 .transaction__description {
@@ -11,28 +18,23 @@
 }
 
 .transaction__name {
-    color: var(--text-color-active);
+    color: var(--text-color);
     font-size: var(--text-sm);
+    margin-left: var(--margin-sm);
 }
 
 .transaction__date {
     color: var(--text-color);
     font-size: var(--text-xsm);
+    margin-left: var(--margin-sm);
 }
 
 .transaction__amount {
     width: 80px;
     height: 80px;
-    border-radius: 100%;
     display: inline-grid;
     align-content: center;
     text-align: center;
+    font-weight: 600;
     font-size: var(--text-sm);
-}
-
-.transaction__connection {
-    display: flex;
-    width: 40px;
-    height: 30px;
-    border-right: solid 1px var(--border-color);
 }

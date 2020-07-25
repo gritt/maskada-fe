@@ -34,10 +34,8 @@ function CategoryInput({transaction}) {
         )
     }
 
-    let style = `category-input ${transaction.decoration()}`
-
     return (
-        <span className={style}>
+        <span className={'category-input'}>
             <ul>
                 {Categories.map(name => {
                     return option(name)

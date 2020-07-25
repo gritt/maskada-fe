@@ -17,7 +17,6 @@ describe('TypeInput', () => {
         render(<TypeInput transaction={givenTransaction}/>)
 
         // then
-        expect(givenTransaction.decoration).toBeCalled()
         expect(screen.getByRole('button')).toHaveTextContent(GetTypeName(givenTransaction.type))
     });
     it('should update type from DEBIT to CREDIT when clicked', () => {

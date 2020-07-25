@@ -1,55 +1,38 @@
 body {
-    --background-color: #f9f9f9;
-    --background-color-active: #FFFFFF;
-    --border-color: #D8D8D8;
+    --app-background: #F4F3EF;
+    --app-background-shadow-dark: #D7D6D2;
+    --app-background-shadow-light: #DCDBD7;
 
+    --background-color: #ABE3CC;
+    --background-color-shadow-light: #C0FEE4;
+    --background-color-shadow-dark: #7EC7AD;
 
-    --text-color: #626262;
-    --text-color-active: #4F4F4F;
+    --text-color: #006647;
 
+    --income-text-color: #4F7CD2;
+    --debit-text-color: #E28676;
+    --credit-card-text-color: #907ED1;
 
-    --income-text-color: rgb(74, 140, 62);
-    --income-background-color: rgba(74, 140, 62, 0.025);
+    --color-success: #6ad277;
+    --color-danger: #e88a79;
+    --color-info: #8cc4ff;
 
-    --debit-text-color: rgb(239, 95, 98);
-    --debit-background-color: rgba(239, 95, 98, 0.025);
-
-    --credit-card-text-color: rgb(142, 59, 191);
-    --credit-background-color: rgba(142, 59, 191, 0.025);
-
-
-    --text-color-positive: var(--income-text-color);
-    --text-color-negative: var(--debit-text-color);
-
-
-    --text-color-success: #4A8C3E;
-    --border-color-success: #6AC35A;
-    --background-color-success: #87F573;
-
-    --text-color-danger: #883335;
-    --border-color-danger: #BE4A4C;
-    --background-color-danger: #EF5F62;
-
-    --text-color-info: #27688E;
-    --border-color-info: #3A92C6;
-    --background-color-info: #4CB8F9;
-
-
-    --text-xsm: 0.70rem;
-    --text-sm: 0.90rem;
-    --text-m: 1.10rem;
+    --text-xsm: 0.75rem;
+    --text-sm: 1rem;
+    --text-m: 1.25rem;
     --text-l: 1.50rem;
-    --text-xl: 1.90rem;
-
-    --width-full: 100%;
+    --text-xl: 1.75rem;
 
     --margin-xsm: 0.5rem;
     --margin-sm: 1rem;
     --margin-m: 1.25rem;
+    --margin-l: 1.50rem;
+    --margin-xl: 1.75rem;
+    --margin-xxl: 2rem;
 
-    --pading-xsm: 0.5rem;
-    --pading-sm: 1rem;
-    --pading-m: 1.25rem;
+    --padding-xsm: 0.5rem;
+    --padding-sm: 1rem;
+    --padding-m: 1.25rem;
 }
 
 .app {

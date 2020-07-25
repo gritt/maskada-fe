@@ -8,8 +8,8 @@ import "./FormBuilder.css"
 
 const FormBuilder = ({transaction, submit, errors}) => {
     let style = !errors
-        ? `add-transaction ${transaction.decoration()}`
-        : `add-transaction ${transaction.decoration()} add-transaction__error`
+        ? `add-transaction`
+        : `add-transaction add-transaction__error`
 
     const onClick = () => {
         submit(transaction)

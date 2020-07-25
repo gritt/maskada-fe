@@ -16,7 +16,6 @@ function View({type, category, name, date, amount}) {
             </span>
             <span>
                 <span className={style}>$ {amount}</span>
-                <span className="transaction__connection"/>
             </span>
         </li>
     )

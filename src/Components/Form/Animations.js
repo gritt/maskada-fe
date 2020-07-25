@@ -1,10 +1,29 @@
 import React from "react";
 import "./Animations.css"
 
+const Animation = (className) => {
+    let style = `animation ${className}`
+
+    return (
+        <div className={style}>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    )
+
+}
+
 const Loading = () => {
     return (
         <div className={"animation-place"}>
-            <div className={"loading"}/>
+            {Animation('loading')}
         </div>
     )
 }
@@ -12,9 +31,7 @@ const Loading = () => {
 const Success = () => {
     return (
         <div className={"animation-place"}>
-            <div className='success'>
-                ✓︎
-            </div>
+            {Animation('success')}
         </div>
     )
 }

@@ -1,17 +1,11 @@
 .transaction__type-income {
-    border: solid 1px var(--income-text-color);
     color: var(--income-text-color);
-    background-color: var(--income-background-color);
 }
 
 .transaction__type-credit {
-    border: solid 1px var(--credit-card-text-color);
     color: var(--credit-card-text-color);
-    background-color: var(--credit-background-color);
 }
 
 .transaction__type-debit {
-    border: solid 1px var(--debit-text-color);
     color: var(--debit-text-color);
-    background-color: var(--debit-background-color);
 }

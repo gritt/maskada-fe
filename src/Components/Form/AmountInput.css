@@ -3,11 +3,16 @@
     width: 8rem;
     float: right;
 
-    border: solid 1px var(--border-color);
+    border: transparent;
+
     border-radius: 100%;
+    background: var(--app-background);
+    box-shadow: inset 3px 3px 8px var(--app-background-shadow-dark),
+    inset -4px -4px 8px white;
+
     text-align: center;
     outline: 0;
-    font-weight: 300;
+    font-weight: 600;
     font-size: var(--text-xl);
 }
 

@@ -1,56 +1,59 @@
 .add-transaction {
-    width: 100%;
-    height: 8rem;
     display: flex;
+    width: 90%;
+    margin: 0 auto;
+    height: 8rem;
+    padding: var(--padding-xsm) 0;
 
-    border-radius: 12px;
+    border: solid 1px transparent;
 
-    box-shadow: 0 1px 3px var(--border-color);
-    border: solid 1px var(--border-color);
-    padding: 0.4rem 0;
+    border-radius: 8px;
+    background: var(--app-background);
+    box-shadow: 3px 3px 8px var(--app-background-shadow-dark),
+    -4px -4px 8px white;
 }
 
 .add-transaction__error {
-    border: solid 1px var(--background-color-danger);
+    border: solid 1px var(--color-danger);
 }
 
 .add-transaction__description {
-    width: 63%;
+    width: 65%;
     height: 100%;
-    margin-left: 0.3rem;
+    margin-left: var(--margin-xsm);
 }
 
 .add-transaction__amount {
-    width: 37%;
+    width: 35%;
     height: 100%;
-    margin-right: 0.2rem;
+    margin-right: var(--margin-xsm);
 }
 
-
 .add-transaction__controls {
-    width: 100%;
+    width: 90%;
     height: 3rem;
-    margin-top: 1rem;
+    margin: var(--margin-sm) auto;
 }
 
 .add-transaction__controls a {
     float: right;
     width: 1rem;
     height: 1rem;
-    margin-left: 1rem;
-    padding: 1rem;
+    margin-left: var(--margin-sm);
+    padding: var(--padding-sm);
 
     border-radius: 100%;
     text-decoration: none;
     text-align: center;
     line-height: 1rem;
     font-weight: 300;
-    font-size: var(--text-l);
+    font-size: var(--text-m);
     user-select: none;
     outline: 0;
 
-    box-shadow: 0 1px 3px var(--border-color);
-    border: solid 1px transparent;
+    background: var(--app-background);
+    box-shadow: 3px 3px 8px var(--app-background-shadow-dark),
+    -4px -4px 8px white;
 }
 
 .add-transaction__controls a:hover {
@@ -58,28 +61,21 @@
 }
 
 .add-transaction__controls--cancel {
-    color: var(--text-color-danger);
-    background: var(--background-color-danger);
+    color: var(--text-color);
 }
 
-.add-transaction__controls--cancel:hover {
-    border: solid 1px var(--border-color-danger);
+.add-transaction__controls--cancel:active {
+    background: var(--app-background);
+    box-shadow: inset 4px 4px 8px var(--app-background-shadow-dark),
+    inset -4px -4px 8px white;
 }
 
 .add-transaction__controls--save {
-    color: var(--text-color-success);
-    background: var(--background-color-success);
+    color: var(--text-color);
 }
 
-.add-transaction__controls--save:hover {
-    border: solid 1px var(--border-color-success);
-}
-
-.add-transaction__controls--info {
-    color: var(--text-color-info);
-    background: var(--background-color-info);
-}
-
-.add-transaction__controls--info:hover {
-    border: solid 1px var(--border-color-info);
+.add-transaction__controls--save:active {
+    background: var(--app-background);
+    box-shadow: inset 4px 4px 8px var(--app-background-shadow-dark),
+    inset -4px -4px 8px white;
 }

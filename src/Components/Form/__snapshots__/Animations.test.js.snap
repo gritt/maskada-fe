@@ -6,8 +6,18 @@ exports[`Animations renders loading 1`] = `
     class="animation-place"
   >
     <div
-      class="loading"
-    />
+      class="animation loading"
+    >
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+    </div>
   </div>
 </div>
 `;
@@ -18,9 +28,17 @@ exports[`Animations renders success 1`] = `
     class="animation-place"
   >
     <div
-      class="success"
+      class="animation success"
     >
-      ✓︎
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
     </div>
   </div>
 </div>
