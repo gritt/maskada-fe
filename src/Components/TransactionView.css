@@ -1,6 +1,6 @@
 .transaction {
     display: flex;
-    width: 95%;
+    width: 90%;
     margin: 0 auto var(--margin-xl);
 
     border-radius: 8px;
@@ -21,10 +21,11 @@
     color: var(--text-color);
     font-size: var(--text-sm);
     margin-left: var(--margin-sm);
+    margin-bottom: var(--margin-sm);
 }
 
 .transaction__date {
-    color: var(--text-color);
+    color: var(--text-color-light);
     font-size: var(--text-xsm);
     margin-left: var(--margin-sm);
 }

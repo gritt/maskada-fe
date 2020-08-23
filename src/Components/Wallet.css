@@ -1,20 +1,13 @@
-.sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: auto;
-}
-
 header {
     display: flex;
     flex-direction: column;
-    margin-bottom: var(--margin-sm);
+    width: 95%;
+    margin: 0 auto var(--margin-sm);
 
+    border-radius: 8px;
+    border: solid 1px transparent;
     background: var(--background-color);
-    border-bottom: solid 1px var(--background-color-shadow-dark);
-
-    box-shadow: 7px 7px 15px var(--app-background-shadow-dark),
-    -7px -7px 15px var(--background-color-shadow-light);
+    box-shadow: 0 8px 10px var(--app-background-shadow-dark);
 }
 
 .months-nav {
@@ -28,7 +21,7 @@ header {
     list-style: none;
     overflow-y: scroll;
     scroll-behavior: smooth;
-    font-weight: 300;
+    font-weight: 400;
 
     font-size: var(--text-xsm);
     color: var(--text-color);
@@ -52,14 +45,14 @@ header {
 .months-nav__list .months-nav__list--active {
     background: var(--background-color);
 
-    box-shadow: inset 2px 2px 5px var(--background-color-shadow-dark),
-    inset -2px -2px 5px var(--background-color-shadow-light);
+    box-shadow: inset 2px 2px 3px var(--background-color-shadow-dark),
+    inset -1px -1px 2px var(--background-color-shadow-light);
 }
 
 .account {
     display: flex;
-    padding-top: var(--padding-m);
-    padding-bottom: var(--padding-m);
+    padding-top: var(--padding-sm);
+    padding-bottom: var(--padding-sm);
 
     font-weight: 400;
     font-size: var(--text-l);

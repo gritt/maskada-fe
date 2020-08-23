@@ -11,18 +11,18 @@ describe('TransactionView', () => {
     beforeEach(() => {
         givenTransaction = {
             category: "Food",
-            date: "20/04/2020",
+            date: "2020-07-26T00:00:00Z",
             amount: "100"
         }
     })
 
     it('renders with props', () => {
         // when
-        render(<View {...givenTransaction}/>)
+        const {container} = render(<View {...givenTransaction}/>)
 
         // then
-        expect(screen.getByText(givenTransaction.category)).toBeTruthy()
-        expect(screen.getByText(givenTransaction.date)).toBeTruthy()
+        expect(container).toHaveTextContent(givenTransaction.category)
+        expect(container).toHaveTextContent("Sun Jul 26 2020")
 
         expect(screen.getByText(`$ ${givenTransaction.amount}`)).toBeTruthy()
     });
@@ -31,10 +31,10 @@ describe('TransactionView', () => {
         givenTransaction.name = "Galaxy Buds"
 
         // when
-        render(<View {...givenTransaction}/>)
+        const {container} = render(<View {...givenTransaction}/>)
 
         // then
-        expect(screen.getByText(givenTransaction.name)).toBeTruthy()
+        expect(container).toHaveTextContent(givenTransaction.name)
     });
     it('should render with credit style', () => {
         // given

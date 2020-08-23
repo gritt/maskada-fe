@@ -2,7 +2,7 @@ import React, {useEffect} from "react"
 import {GetBalance, GetTimeline} from "../Services/Transaction"
 import "./Wallet.css"
 
-function Wallet({transactions, activeMonth, setActiveMonth}) {
+function Wallet({transactions, activeMonth, setMonth}) {
     useEffect(() => {
         document.title = activeMonth
     })
@@ -13,7 +13,7 @@ function Wallet({transactions, activeMonth, setActiveMonth}) {
             : undefined
 
         const onClick = () => {
-            setActiveMonth(month)
+            setMonth(month)
         }
 
         return (
@@ -31,16 +31,18 @@ function Wallet({transactions, activeMonth, setActiveMonth}) {
         : "account account--negative"
 
     return (
-        <header className="sticky">
-            <nav className="months-nav">
-                <ul className="months-nav__list">
-                    {timeline.map(month => {
-                        return Month(month)
-                    })}
-                </ul>
-            </nav>
-            <h1 className={style}>$ {balance}</h1>
-        </header>
+        <div className="sticky-top">
+            <header>
+                <nav className="months-nav">
+                    <ul className="months-nav__list">
+                        {timeline.map(month => {
+                            return Month(month)
+                        })}
+                    </ul>
+                </nav>
+                <h1 className={style}>$ {balance}</h1>
+            </header>
+        </div>
     )
 }
 

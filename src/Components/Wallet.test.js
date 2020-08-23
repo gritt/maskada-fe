@@ -74,7 +74,7 @@ describe('Wallet', () => {
     it('should update the active month when clicked', () => {
         // given
         const givenSetActiveMonth = jest.fn()
-        render(<Wallet setActiveMonth={givenSetActiveMonth}/>)
+        render(<Wallet setMonth={givenSetActiveMonth}/>)
 
         // when
         fireEvent.click(screen.getByText(givenTimeline[1]))

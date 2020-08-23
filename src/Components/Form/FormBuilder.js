@@ -22,17 +22,18 @@ const FormBuilder = ({transaction, submit, errors}) => {
     return (
         <div>
             <div className={style}>
-                <div className={"add-transaction__description"}>
-                    <TypeInput transaction={transaction}/>
+                <div className={"add-transaction__right"}>
                     <CategoryInput transaction={transaction}/>
                 </div>
-                <div className={"add-transaction__amount"}>
+                <div className={"add-transaction__left"}>
+                    <TypeInput transaction={transaction}/>
                     <AmountInput transaction={transaction}/>
                 </div>
             </div>
-            <div className={"add-transaction__controls"}>
-                <a className={"add-transaction__controls--cancel"} onClick={onClear}>✕</a>
-                <a className={"add-transaction__controls--save"} onClick={onClick}>✓</a>
+
+            <div className={"add-transaction__bottom"}>
+                <span onClick={onClick}>✓</span>
+                <span onClick={onClear}>✕</span>
             </div>
         </div>
     )

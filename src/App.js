@@ -1,32 +1,50 @@
 import React, {useEffect, useState} from "react"
 import './App.css'
-import {Wallet} from "./Components/Wallet"
-import {ListTransactions} from "./Scenes/ListTransactions"
-import {GetMonthName} from "./Services/Datetime"
+
 import {Get} from "./Services/API"
+import {GetMonthName} from "./Services/Datetime"
 import {ByMonthName, GroupBy} from "./Services/Transaction"
-import {AddTransaction} from "./Scenes/AddTransaction";
+
+import {Wallet} from "./Components/Wallet"
+import {PresentScene} from "./Scenes/Presenter";
 
 function App() {
-    const [activeMonth, setActiveMonth] = useState(GetMonthName(Date.now()))
+    // List of transactions
     const [transactions, setTransactions] = useState([])
 
-    const callback = (transactions, error) => {
-        setTransactions(GroupBy(ByMonthName, transactions))
+    // Default visualization of transactions - by month
+    const [month, setMonth] = useState(
+        GetMonthName(Date.now())
+    )
+
+    // Get transaction from API and setTransactions grouped ByMonth
+    function getTransactions() {
+        Get('transaction',
+            (transactions, error) => {
+                setTransactions(
+                    GroupBy(ByMonthName, transactions)
+                )
+            })
     }
 
     useEffect(() => {
-        Get('transaction', callback)
+        getTransactions()
     }, [])
 
     return (
         <div className="app">
-            <Wallet transactions={transactions} activeMonth={activeMonth} setActiveMonth={setActiveMonth}/>
-            <AddTransaction/>
-            <ListTransactions transactions={transactions} collation={activeMonth}/>
+            <Wallet
+                transactions={transactions}
+                activeMonth={month}
+                setMonth={setMonth}
+            />
+            <PresentScene
+                transactions={transactions}
+                collation={month}
+                refresh={getTransactions}
+            />
         </div>
     )
-
 }
 
 export default App

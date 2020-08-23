@@ -1,10 +1,9 @@
 import React, {useState} from 'react'
 import {Post} from "../Services/API";
 import {FormBuilder} from "../Components/Form/FormBuilder";
-import {Loading, Success} from "../Components/Form/Animations";
 import useTransaction from "../Components/Form/UseTransaction";
 
-function AddTransaction() {
+function AddTransaction({doneCallback}) {
     const transaction = useTransaction()
     const [stage, setStage] = useState('form')
 
@@ -12,7 +11,7 @@ function AddTransaction() {
         try {
             setStage('loading')
 
-            const callback = (response, error) => {
+            function callback(response, error) {
                 return !error
                     ? setStage('success')
                     : setStage('error')
@@ -28,40 +27,30 @@ function AddTransaction() {
     }
 
     function viewStage() {
+        let props = {
+            submit: create,
+            transaction: transaction
+        }
         switch (stage) {
             case "form":
-                return <FormBuilder
-                    submit={create}
-                    transaction={transaction}
-                />
-
-            case "error":
-                return <FormBuilder
-                    submit={create}
-                    transaction={transaction}
-                    errors={true}/>
-
+                return <FormBuilder {...props}/>
             case "loading":
-                return <Loading/>
-
-            case 'success': {
-                setTimeout(() => {
-                    setStage('form')
-                }, 2000)
-
-                return <Success/>
-            }
-
-            default : {
-                return <FormBuilder submit={create}/>
-            }
+                return <FormBuilder {...props} loading={true}/>
+            case "error":
+                return <FormBuilder {...props} errors={true}/>
+            case 'success':
+                return doneCallback()
+            default:
+                return <FormBuilder {...props}/>
         }
     }
 
     return (
-        <section className="content">
-            {viewStage()}
-        </section>
+        <div className="sticky-cover">
+            <section className="content">
+                {viewStage()}
+            </section>
+        </div>
     )
 }
 

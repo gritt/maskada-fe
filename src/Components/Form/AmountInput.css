@@ -1,19 +1,20 @@
 .amount-input {
-    height: 8rem;
-    width: 8rem;
-    float: right;
+    display: flex;
+    height: 9rem;
+    width: 9rem;
+    margin: 0 auto;
 
     border: transparent;
-
     border-radius: 100%;
-    background: var(--app-background);
-    box-shadow: inset 3px 3px 8px var(--app-background-shadow-dark),
-    inset -4px -4px 8px white;
+
+    background: transparent;
+    box-shadow: inset 2px 2px 3px var(--background-color-shadow-dark),
+    inset -1px -1px 2px var(--background-color-shadow-light);
 
     text-align: center;
     outline: 0;
-    font-weight: 600;
-    font-size: var(--text-xl);
+    font-weight: 400;
+    font-size: var(--text-l);
 }
 
 /* Chrome, Safari, Edge, Opera */

@@ -1,4 +1,8 @@
 body {
+    /* RESET */
+    -webkit-tap-highlight-color: transparent;
+
+    /* VARIABLES */
     --app-background: #F4F3EF;
     --app-background-shadow-dark: #D7D6D2;
     --app-background-shadow-light: #DCDBD7;
@@ -8,10 +12,11 @@ body {
     --background-color-shadow-dark: #7EC7AD;
 
     --text-color: #006647;
+    --text-color-light: #3CA283;
 
-    --income-text-color: #4F7CD2;
-    --debit-text-color: #E28676;
-    --credit-card-text-color: #907ED1;
+    --debit-text-color: #C2456D;
+    --income-text-color: #CB9D4A;
+    --credit-card-text-color: #8F43CC;
 
     --color-success: #6ad277;
     --color-danger: #e88a79;
@@ -22,6 +27,7 @@ body {
     --text-m: 1.25rem;
     --text-l: 1.50rem;
     --text-xl: 1.75rem;
+    --text-xxl: 2.0rem;
 
     --margin-xsm: 0.5rem;
     --margin-sm: 1rem;
@@ -33,13 +39,46 @@ body {
     --padding-xsm: 0.5rem;
     --padding-sm: 1rem;
     --padding-m: 1.25rem;
+    --padding-l: 1.50rem;
+    --padding-xl: 1.75rem;
 }
 
 .app {
+    width: 100%;
+    height: 100%;
+    padding-top: 15rem;
+    padding-bottom: 10rem;
 }
 
 .content {
-    padding-top: 15rem;
-    width: 95%;
+    width: 100%;
     margin: 0 auto;
+}
+
+.sticky-top {
+    display: flex;
+    position: fixed;
+    top: 0.5rem;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+}
+
+.sticky-cover {
+    display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: var(--app-background);
+}
+
+.sticky-bottom {
+    display: flex;
+    position: fixed;
+    bottom: 1rem;
+    width: 100%;
+    height: auto;
+    z-index: 1;
 }

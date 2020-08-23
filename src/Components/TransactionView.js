@@ -7,6 +7,7 @@ function View({type, category, name, date, amount}) {
     let style = `transaction__amount  ${getStyle(type)}`
 
     name = !name ? category : name
+    date = new Date(date).toDateString()
 
     return (
         <li className={"transaction"}>

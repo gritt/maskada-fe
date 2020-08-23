@@ -6,12 +6,10 @@ import {AddTransaction} from "./AddTransaction";
 
 import useTransaction from "../Components/Form/UseTransaction";
 import {FormBuilder} from "../Components/Form/FormBuilder";
-import {Loading, Success} from "../Components/Form/Animations";
 import {Post} from "../Services/API";
 
 jest.mock("../Components/Form/UseTransaction")
 jest.mock("../Components/Form/FormBuilder")
-jest.mock("../Components/Form/Animations")
 jest.mock("../Services/API")
 
 describe('AddTransaction', () => {
@@ -26,10 +24,6 @@ describe('AddTransaction', () => {
         useTransaction.mockImplementation(() => {
             return mockUseTransaction
         })
-
-        Loading.mockImplementation(() => null)
-        Success.mockImplementation(() => null)
-
         Post.mockImplementation(jest.fn())
     })
 
@@ -58,13 +52,21 @@ describe('AddTransaction', () => {
     });
     it('should render loading when create has been called back', () => {
         // given
-        FormBuilder.mockImplementation(({submit, transaction}) => {
-            return (
-                <div data-testid={'test-submit'} onClick={() =>
-                    submit(transaction)
-                }/>
-            )
-        })
+        FormBuilder
+            .mockImplementationOnce(({submit, transaction, loading}) => {
+                // then
+                expect(loading).toBeFalsy()
+                return (
+                    <div data-testid={'test-submit'} onClick={() =>
+                        submit(transaction)
+                    }/>
+                )
+            })
+            .mockImplementationOnce(({loading}) => {
+                // then
+                expect(loading).toBeTruthy()
+                return null
+            })
 
         render(<AddTransaction/>)
 
@@ -73,8 +75,7 @@ describe('AddTransaction', () => {
 
         // then
         expect(useTransaction).toHaveBeenCalled()
-        expect(FormBuilder).toHaveBeenCalled()
-        expect(Loading).toHaveBeenCalled()
+        expect(FormBuilder).toHaveBeenCalledTimes(2)
     });
     it('should render form with errors when validate throws exception', () => {
         // given
@@ -104,8 +105,6 @@ describe('AddTransaction', () => {
         fireEvent.click(screen.getByTestId('test-submit'))
 
         // then
-        expect(Loading).not.toHaveBeenCalled()
-
         expect(useTransaction).toHaveBeenCalled()
         expect(FormBuilder).toHaveBeenCalledTimes(2)
         expect(mockUseTransaction.validate).toHaveBeenCalled()
@@ -178,6 +177,8 @@ describe('AddTransaction', () => {
     });
     it('should render success when post callback returns success', () => {
         // given
+        const mockDoneCallback = jest.fn()
+
         mockUseTransaction.serialize.mockImplementation(() => {
             return {'mock': 'serialized transaction'}
         })
@@ -202,7 +203,7 @@ describe('AddTransaction', () => {
                 )
             })
 
-        render(<AddTransaction/>)
+        render(<AddTransaction doneCallback={mockDoneCallback}/>)
 
         // when
         fireEvent.click(screen.getByTestId('test-submit'))
@@ -212,6 +213,6 @@ describe('AddTransaction', () => {
         expect(FormBuilder).toHaveBeenCalled()
         expect(mockUseTransaction.validate).toHaveBeenCalled()
         expect(Post).toHaveBeenCalled()
-        expect(Success).toHaveBeenCalled()
+        expect(mockDoneCallback).toHaveBeenCalled()
     })
 });
