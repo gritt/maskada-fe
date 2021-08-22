@@ -1,12 +1,15 @@
 import React from 'react'
 import {View} from "../Components/TransactionView"
 import "./ListTransactions.css"
+import {DescDateSorter, SortBy} from "../Services/Transaction";
 
 function ListTransactions({transactions, collation}) {
     function TransactionsList() {
+        let sortedTransactions = SortBy(DescDateSorter, transactions[collation])
+
         return (
             <ul>
-                {transactions[collation].map((transaction) => {
+                {sortedTransactions.map((transaction) => {
                     return (<View {...transaction} key={transaction.id}/>)
                 })}
             </ul>

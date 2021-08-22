@@ -2,7 +2,6 @@ import React, {useState} from "react";
 
 import "./Controls.css"
 import {AddIcon, CancelIcon} from "../Assets/Icons";
-
 import {ListTransactions} from "./ListTransactions";
 import {AddTransaction} from "./AddTransaction";
 

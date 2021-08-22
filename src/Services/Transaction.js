@@ -33,6 +33,27 @@ function ByMonthName(transaction) {
 }
 
 /**
+ *
+ * @param sorterFn function
+ * @param transactions array
+ * @returns array
+ */
+function SortBy(sorterFn, transactions) {
+    if (!transactions) return []
+    return transactions.sort(sorterFn)
+}
+
+/**
+ *
+ * @param a transaction
+ * @param b transaction
+ * @returns {number}
+ */
+function DescDateSorter(a, b) {
+    return new Date(b.date) - new Date(a.date)
+}
+
+/**
  * @return {array}
  */
 function GetTimeline(transactions) {
@@ -105,5 +126,18 @@ function GetTypeName(type) {
     }
 }
 
-export {DEBIT, CREDIT, INCOME}
-export {GetBalance, GetTimeline, GetTypeName, GroupBy, ByMonthName}
+export {
+    DEBIT,
+    CREDIT,
+    INCOME,
+
+    GetBalance,
+    GetTimeline,
+    GetTypeName,
+
+    GroupBy,
+    ByMonthName,
+
+    SortBy,
+    DescDateSorter
+}
